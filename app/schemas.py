@@ -11,6 +11,7 @@ class Brand(BaseModel):
     name: str
     category: str
     summary: str
+    main_products_services: list[str] = Field(default_factory=list)
 
 
 class Competitor(BaseModel):
@@ -27,6 +28,7 @@ class CompetitorAnalysis(BaseModel):
     competitors: list[Competitor]  # Fewer than 3 is valid when no reliable evidence exists.
     strengths: list[str]
     opportunities: list[str]
+    competitive_advantages: list[str] = Field(default_factory=list)
 
 
 class SearchQuery(BaseModel):
@@ -63,6 +65,8 @@ class TargetAudience(BaseModel):
     customer_needs: list[str]
     geographic_focus: list[str]
     recommended_segments: list[str]
+    customer_profiles: list[str] = Field(default_factory=list)
+    potential_interests: list[str] = Field(default_factory=list)
 
 
 class Analysis(BaseModel):
@@ -76,3 +80,33 @@ class Analysis(BaseModel):
 class AIAnalysis(BaseModel):
     brand: Brand
     analysis: Analysis
+
+
+class TokenUsage(BaseModel):
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    total_tokens: int | None = None
+
+
+class ModelInfo(BaseModel):
+    provider: str
+    model: str
+    token_usage: TokenUsage
+    response_seconds: float | None = None
+
+
+class SourceSummary(BaseModel):
+    title: str
+    meta_description: str
+    characters_extracted: int
+
+
+class LinkAnalysisResponse(BaseModel):
+    success: Literal[True]
+    status: Literal["analysis_complete"]
+    website: str
+    brand: Brand
+    analysis: Analysis
+    model_info: ModelInfo
+    source_summary: SourceSummary
+    limitations: list[str]

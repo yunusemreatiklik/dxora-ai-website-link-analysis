@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 import re
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 import httpx
@@ -69,25 +69,43 @@ async def fetch_website(url: str, client: httpx.AsyncClient | None = None) -> Ex
             follow_redirects=False,
             trust_env=False,
             timeout=httpx.Timeout(10.0, connect=5.0),
-            headers={"User-Agent": "DxoraLinkAnalysisAssessment/0.2 (+Python HTTPX)"},
+            headers={"User-Agent": "DxoraLinkAnalysisAssessment/1.0 (+Python HTTPX)"},
         ) as owned_client:
-            return await _fetch_with_client(url, owned_client)
-    return await _fetch_with_client(url, client)
+            return await _fetch_with_client(url, owned_client, pin_dns=True)
+    return await _fetch_with_client(url, client, pin_dns=False)
 
 
-async def _fetch_with_client(url: str, client: httpx.AsyncClient) -> ExtractedWebsite:
+async def _fetch_with_client(url: str, client: httpx.AsyncClient, pin_dns: bool) -> ExtractedWebsite:
     current_url = url
     for redirect_count in range(MAX_REDIRECTS + 1):
-        await require_public_website(current_url)
+        public_ip = await require_public_website(current_url)
+        # Production mode connects to the *validated IP*, avoiding DNS rebinding
+        # between validation and the socket connection. The original hostname
+        # is retained as Host and TLS certificate verification SNI.
+        if pin_dns:
+            parsed = urlsplit(current_url)
+            hostname = parsed.hostname or ""
+            destination = str(httpx.URL(current_url).copy_with(host=public_ip))
+            host_header = hostname + (f":{parsed.port}" if parsed.port else "")
+            request_headers = {"Host": host_header}
+            request_extensions = {"sni_hostname": hostname}
+        else:
+            # Only the explicitly injected test client goes through this path.
+            destination = current_url
+            request_headers = {}
+            request_extensions = {}
         try:
-            async with client.stream("GET", current_url, follow_redirects=False) as response:
+            async with client.stream(
+                "GET", destination, headers=request_headers,
+                extensions=request_extensions, follow_redirects=False,
+            ) as response:
                 if response.status_code in {301, 302, 303, 307, 308}:
                     location = response.headers.get("location")
                     if not location:
                         raise WebsiteFetchError("Redirect response has no Location header")
                     if redirect_count >= MAX_REDIRECTS:
                         raise WebsiteFetchError("Too many redirects")
-                    current_url = urljoin(str(response.url), location)
+                    current_url = urljoin(current_url, location)
                     continue
 
                 response.raise_for_status()
@@ -103,7 +121,7 @@ async def _fetch_with_client(url: str, client: httpx.AsyncClient) -> ExtractedWe
                         raise ContentTooLarge(f"Website HTML is larger than the permitted {MAX_HTML_BYTES // 1_000_000} MB")
                     chunks.append(chunk)
                 html = b"".join(chunks).decode(response.encoding or "utf-8", errors="replace")
-                return parse_html(html, str(response.url))
+                return parse_html(html, current_url)
         except (httpx.TimeoutException, httpx.NetworkError, httpx.HTTPStatusError, httpx.ProtocolError) as exc:
             raise WebsiteFetchError("Website could not be retrieved successfully") from exc
     raise WebsiteFetchError("Redirect limit exceeded")

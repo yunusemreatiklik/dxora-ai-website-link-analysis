@@ -2,6 +2,8 @@
 import json
 import os
 import re
+import asyncio
+from time import perf_counter
 from dataclasses import dataclass
 from typing import Any
 
@@ -26,6 +28,7 @@ class LLMResult:
     provider: str
     model: str
     usage: dict[str, Any]
+    response_seconds: float = 0.0
 
 
 def build_prompt(page: ExtractedWebsite) -> str:
@@ -68,7 +71,11 @@ def build_prompt(page: ExtractedWebsite) -> str:
         "limitations in brand_overview. Never invent traffic/search volume or market share. "
         "Do not claim competitor strengths or weaknesses have been independently verified. "
         "All fields must have the types shown; lists are JSON arrays. "
-        "Use the website language when sensible and avoid overly generic SEO advice.\n\n"
+        "Explicitly include brand.main_products_services, competitor_analysis.competitive_advantages, "
+        "target_audience.customer_profiles and target_audience.potential_interests as arrays. "
+        "Use the website language when sensible and avoid overly generic SEO advice. "
+        "Do not invent brand metrics, customers, awards, or service offerings. "
+        "If there are fewer than five actual services, clearly label suggested services as inferred_suggestion.\n\n"
         "<UNTRUSTED_WEBSITE_DATA>\n"
         + json.dumps(data, ensure_ascii=False)
         + "\n</UNTRUSTED_WEBSITE_DATA>"
@@ -113,19 +120,32 @@ async def analyze_with_gemini(
 async def _request(
     client: httpx.AsyncClient, url: str, api_key: str, payload: dict[str, Any], model: str
 ) -> LLMResult:
-    try:
-        response = await client.post(
-            url,
-            json=payload,
-            headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
-        )
-        response.raise_for_status()
-        output = response.json()
-    except httpx.HTTPStatusError as exc:
-        # Do not expose API key, request body, or returned remote HTML to the caller.
-        raise LLMServiceError(f"Gemini API returned HTTP {exc.response.status_code}") from exc
-    except (httpx.TimeoutException, httpx.NetworkError, httpx.ProtocolError, ValueError) as exc:
-        raise LLMServiceError("Gemini API request or response failed") from exc
+    started = perf_counter()
+    output: dict[str, Any] | None = None
+    for attempt in range(3):
+        try:
+            response = await client.post(
+                url,
+                json=payload,
+                headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
+            )
+            response.raise_for_status()
+            output = response.json()
+            break
+        except httpx.HTTPStatusError as exc:
+            status = exc.response.status_code
+            if status in {429, 500, 502, 503, 504} and attempt < 2:
+                await asyncio.sleep(0.5 * (2 ** attempt))
+                continue
+            # Return only the sanitized status; do not expose API key or provider body.
+            raise LLMServiceError(f"Gemini API returned HTTP {status}") from exc
+        except (httpx.TimeoutException, httpx.NetworkError, httpx.ProtocolError) as exc:
+            if attempt < 2:
+                await asyncio.sleep(0.5 * (2 ** attempt))
+                continue
+            raise LLMServiceError("Gemini API request failed") from exc
+        except ValueError as exc:
+            raise LLMServiceError("Gemini API returned invalid JSON") from exc
     if not isinstance(output, dict):
         raise LLMServiceError("Gemini API returned an unexpected response")
     result = _parse_response(output)
@@ -139,4 +159,5 @@ async def _request(
             "output_tokens": usage.get("candidatesTokenCount"),
             "total_tokens": usage.get("totalTokenCount"),
         },
+        response_seconds=round(perf_counter() - started, 3),
     )

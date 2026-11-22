@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: dxora-ai-link-analysis
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: DEMO_REQUESTS_PER_MINUTE
+        value: '5'
+      - key: DEMO_REQUESTS_PER_DAY
+        value: '75'
+      - key: DEMO_MAX_CONCURRENT
+        value: '2'
