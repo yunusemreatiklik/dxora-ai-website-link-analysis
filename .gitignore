@@ -12,3 +12,6 @@ app/*backup*.py
 benchmarks/results*.csv
 *.log
 benchmarks/sample_outputs/
+
+# Browser-download duplicates; keep descriptive reviewed samples instead.
+evidence/response_*.json

@@ -1,0 +1,264 @@
+{
+  "success": true,
+  "status": "analysis_complete",
+  "website": "https://www.shopify.com/",
+  "brand": {
+    "name": "Shopify",
+    "category": "E-commerce Platform",
+    "summary": "Shopify is an all-in-one commerce platform that enables individuals and enterprises to build, run, and scale their businesses online, in person, and across multiple channels with AI-powered tools.",
+    "main_products_services": [
+      "Online Store Builder",
+      "Shopify Checkout",
+      "Shopify Payments",
+      "Shopify Markets",
+      "Sidekick Commerce AI",
+      "Shopify Capital"
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Shopify is a dominant global player in the e-commerce platform sector, competing with both hosted website builders and open-source content management systems for businesses of all sizes.",
+      "competitors": [
+        {
+          "name": "WooCommerce",
+          "main_service": "Open-source e-commerce plugin for WordPress",
+          "strengths": [
+            "High degree of customization and ownership",
+            "Leverages the vast WordPress ecosystem"
+          ],
+          "weaknesses_or_gaps": [
+            "Requires more technical maintenance and separate hosting",
+            "Can become complex to manage updates and security"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        },
+        {
+          "name": "Squarespace",
+          "main_service": "Website builder and e-commerce platform",
+          "strengths": [
+            "Visually appealing templates",
+            "All-in-one subscription for hosting and design"
+          ],
+          "weaknesses_or_gaps": [
+            "Less advanced inventory and multi-channel scaling features for large enterprises",
+            "Fewer third-party app integrations compared to specialized e-commerce platforms"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        },
+        {
+          "name": "Wix eCommerce",
+          "main_service": "Cloud-based web development and e-commerce services",
+          "strengths": [
+            "User-friendly drag-and-drop editor",
+            "Accessible pricing for small businesses"
+          ],
+          "weaknesses_or_gaps": [
+            "Historically perceived as less scalable for massive enterprise operations",
+            "Complex data migration out of the platform can be challenging"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        }
+      ],
+      "strengths": [
+        "Industry-leading high-converting checkout (Shop Pay)",
+        "Comprehensive ecosystem with over 21,000 apps",
+        "Robust AI tools like Sidekick and Agentic Storefronts"
+      ],
+      "opportunities": [
+        "Expanding deeper into enterprise-grade headless commerce solutions via Hydrogen",
+        "Enhancing AI-driven conversational commerce and chat-based shopping experiences"
+      ],
+      "competitive_advantages": [
+        "Shop Pay high-converting checkout network",
+        "Universal Commerce Protocol and developer APIs",
+        "Integrated financial services like Shopify Capital"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "best ecommerce platform for online store",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Commercial investigation",
+        "business_relevance": "Captures users actively looking to build an online store and compare platform features.",
+        "target_audience": "Entrepreneurs and small business owners"
+      },
+      {
+        "query": "how to sell products online with AI",
+        "platforms": [
+          "Google",
+          "X"
+        ],
+        "intent": "Informational",
+        "business_relevance": "Targets merchants interested in leveraging modern AI tools for store creation and management.",
+        "target_audience": "Tech-forward entrepreneurs"
+      },
+      {
+        "query": "shopify vs woocommerce for scaling business",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Comparison",
+        "business_relevance": "Reaches established business owners evaluating platform migration or scalability.",
+        "target_audience": "Mid-market business leaders"
+      },
+      {
+        "query": "best checkout software for higher conversion rates",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Commercial",
+        "business_relevance": "Attracts enterprise decision-makers looking to optimize sales conversion.",
+        "target_audience": "Enterprise ecommerce managers"
+      },
+      {
+        "query": "how to start an online boutique fast",
+        "platforms": [
+          "Instagram",
+          "Facebook"
+        ],
+        "intent": "Transactional/Inspirational",
+        "business_relevance": "Engages aspiring brand founders looking for quick setup and social selling integrations.",
+        "target_audience": "Solo-preneurs and creators"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "all-in-one ecommerce platform",
+      "secondary_keywords": [
+        "online store builder",
+        "ecommerce software",
+        "AI commerce tools"
+      ],
+      "long_tail_keywords": [
+        "best platform to build an online store with AI",
+        "enterprise ecommerce software with high converting checkout"
+      ],
+      "recommended_title": "Shopify: All-in-One Ecommerce Platform & Online Store Builder",
+      "meta_description": "Build, scale, and manage your business with Shopify. Discover the all-in-one ecommerce platform featuring AI store creation, high-converting checkout, and global selling tools.",
+      "supporting_content": [
+        "Enterprise solutions guide for scaling brands",
+        "AI-powered store builder feature overview",
+        "Shop Pay conversion rate case studies"
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Online Store Builder",
+        "description": "Create and customize online storefronts instantly using AI tools or prebuilt themes.",
+        "target_industry": "Retail and E-commerce",
+        "target_customer": "Entrepreneurs and business owners",
+        "main_benefit": "Enables rapid launch of a professional e-commerce website without advanced coding.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Shopify Checkout (Shop Pay)",
+        "description": "High-converting checkout system designed to streamline buyer purchases and increase conversion rates.",
+        "target_industry": "Retail and E-commerce",
+        "target_customer": "Online merchants and enterprise brands",
+        "main_benefit": "Maximizes sales conversion and exposes brands to millions of high-intent buyers.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Shopify Markets",
+        "description": "International selling tool that simplifies cross-border commerce, currency conversion, and shipping.",
+        "target_industry": "Global Retail",
+        "target_customer": "Growing brands expanding internationally",
+        "main_benefit": "Removes the operational complexity of selling products globally.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Sidekick Commerce AI",
+        "description": "Built-in AI assistant designed to spot growth opportunities and automate tedious administrative tasks.",
+        "target_industry": "E-commerce Operations",
+        "target_customer": "Store administrators and marketing teams",
+        "main_benefit": "Saves time and uncovers actionable insights for business growth.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Shopify Capital",
+        "description": "Funding program providing tailored cash advances and loans to stock up on inventory.",
+        "target_industry": "Business Financing",
+        "target_customer": "Merchants needing working capital",
+        "main_benefit": "Provides quick access to growth funding without giving up company equity.",
+        "evidence_status": "website_content"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Entrepreneurs",
+        "Solo-preneurs",
+        "Small business owners"
+      ],
+      "secondary_audience": [
+        "Enterprise brand leaders",
+        "Developers and agency partners",
+        "Creators and influencers"
+      ],
+      "industries": [
+        "Retail",
+        "Direct-to-Consumer (DTC)",
+        "Apparel and Fashion",
+        "Home Goods",
+        "Toy Manufacturing"
+      ],
+      "business_types": [
+        "Startups",
+        "Growing brands",
+        "Global enterprises"
+      ],
+      "customer_needs": [
+        "Fast store setup",
+        "High conversion checkout",
+        "Inventory and multi-channel management",
+        "International expansion",
+        "Access to business funding"
+      ],
+      "geographic_focus": [
+        "Global / International"
+      ],
+      "recommended_segments": [
+        "First-time online store creators",
+        "Mid-market DTC brands scaling globally",
+        "Enterprise retailers seeking headless commerce flexibility"
+      ],
+      "customer_profiles": [
+        "The bootstrapped solo founder launching their first product",
+        "The scaling brand director looking to optimize checkout conversion and international reach",
+        "The enterprise technical lead building custom agentic shopping experiences"
+      ],
+      "potential_interests": [
+        "Artificial intelligence in retail",
+        "Digital marketing and social selling",
+        "Supply chain and inventory optimization",
+        "Business growth funding"
+      ]
+    }
+  },
+  "model_info": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "token_usage": {
+      "input_tokens": 1745,
+      "output_tokens": 2216,
+      "total_tokens": 3961
+    },
+    "response_seconds": 7.328
+  },
+  "source_summary": {
+    "title": "Shopify: The All-in-One Commerce Platform for Businesses - Shopify",
+    "meta_description": "Try Shopify free. Build or grow your business fast with AI. Get more than ecommerce software with tools to manage every part of your business.",
+    "characters_extracted": 3369
+  },
+  "limitations": [
+    "Competitors not independently verified unless an evidence URL is provided",
+    "Recommended search queries are not measured search volume data",
+    "JavaScript-only content may be missing from the source HTML",
+    "Inferred services are suggestions, not confirmed offerings"
+  ]
+}

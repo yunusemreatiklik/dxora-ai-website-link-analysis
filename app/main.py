@@ -21,7 +21,7 @@ load_dotenv()
 app = FastAPI(
     title="Dxora AI-Powered Website Link Analysis",
     description="Website extraction, validated Gemini analysis, five business intelligence sections",
-    version="1.2.0",
+    version="1.3.0",
 )
 
 
@@ -41,7 +41,7 @@ limiter = DemoLimiter(
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok", "version": "1.2.0"}
+    return {"status": "ok", "version": "1.3.0"}
 
 
 @app.post("/link-analysis", response_model=LinkAnalysisResponse, responses={

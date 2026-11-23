@@ -52,6 +52,8 @@ def parse_html(html: str, final_url: str) -> ExtractedWebsite:
     root = soup.find("main") or soup.find("article") or soup.body or soup
     raw_text = root.get_text(" ", strip=True)
     cleaned = re.sub(r"\s+", " ", raw_text).strip()[:MAX_TEXT_CHARS]
+    if not (cleaned or title or description):
+        raise WebsiteFetchError("Website HTML contains no usable text or metadata")
     return ExtractedWebsite(
         final_url=final_url,
         title=title,
@@ -109,8 +111,8 @@ async def _fetch_with_client(url: str, client: httpx.AsyncClient, pin_dns: bool)
                     continue
 
                 response.raise_for_status()
-                content_type = response.headers.get("content-type", "").lower()
-                if not any(t in content_type for t in ("text/html", "application/xhtml+xml")):
+                content_type = response.headers.get("content-type", "").split(";", 1)[0].strip().lower()
+                if content_type not in {"text/html", "application/xhtml+xml"}:
                     raise UnsupportedContent("The supplied URL does not return HTML")
 
                 total = 0

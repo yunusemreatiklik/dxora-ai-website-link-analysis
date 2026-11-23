@@ -1,0 +1,286 @@
+{
+  "success": true,
+  "status": "analysis_complete",
+  "website": "https://www.hubspot.com/",
+  "brand": {
+    "name": "HubSpot",
+    "category": "Customer Platform & CRM Software",
+    "summary": "HubSpot is a comprehensive customer platform that includes marketing, sales, customer service, content management, data, and CRM software designed to help businesses grow.",
+    "main_products_services": [
+      "Marketing Hub",
+      "Sales Hub",
+      "Service Hub",
+      "Content Hub",
+      "Data Hub",
+      "Revenue Hub",
+      "Smart CRM",
+      "Agent Hub"
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "HubSpot operates in the highly competitive CRM and business software market, providing an all-in-one platform that aligns marketing, sales, and service.",
+      "competitors": [
+        {
+          "name": "Salesforce",
+          "main_service": "Customer Relationship Management (CRM) and enterprise cloud solutions",
+          "strengths": [
+            "Extensive enterprise ecosystem",
+            "Highly customizable",
+            "Robust AppExchange marketplace"
+          ],
+          "weaknesses_or_gaps": [
+            "High implementation complexity",
+            "Steep learning curve",
+            "Can be expensive for smaller businesses"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        },
+        {
+          "name": "Salesforce (Competitor 2 placeholder / Freshworks)",
+          "main_service": "Customer engagement software, CRM, and helpdesk solutions",
+          "strengths": [
+            "User-friendly interface",
+            "Affordable pricing tiers",
+            "Quick setup"
+          ],
+          "weaknesses_or_gaps": [
+            "Less advanced customization than enterprise tools",
+            "Reporting limitations at scale"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        },
+        {
+          "name": "Zendesk",
+          "main_service": "Customer service and support ticketing software",
+          "strengths": [
+            "Industry-standard support ticketing",
+            "Strong live chat and knowledge base tools"
+          ],
+          "weaknesses_or_gaps": [
+            "Can become costly with add-ons",
+            "Limited native marketing automation compared to all-in-one platforms"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        }
+      ],
+      "strengths": [
+        "Comprehensive all-in-one platform combining CRM, marketing, sales, and service",
+        "Extensive library of integrations (2,000+)",
+        "Strong focus on built-in AI agents and data unification"
+      ],
+      "opportunities": [
+        "Expanding AI agent adoption across enterprise segments",
+        "Deepening integrations with external AI models like ChatGPT and Claude",
+        "Capturing greater market share in small-to-midsize business bundles"
+      ],
+      "competitive_advantages": [
+        "Unified customer data platform connecting multiple departments",
+        "Strong ease-of-use relative to enterprise legacy systems",
+        "Integrated AI features working directly out of the CRM"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "best CRM software for small business",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Commercial evaluation",
+        "business_relevance": "High relevance for businesses looking to centralize customer data and workflows.",
+        "target_audience": "Small business owners, sales managers"
+      },
+      {
+        "query": "marketing automation and lead generation tools",
+        "platforms": [
+          "Google",
+          "X"
+        ],
+        "intent": "Information gathering and tool comparison",
+        "business_relevance": "Directly aligns with Marketing Hub and lead capture features.",
+        "target_audience": "Marketing directors, demand generation specialists"
+      },
+      {
+        "query": "AI customer service agents for CRM",
+        "platforms": [
+          "Google",
+          "Instagram"
+        ],
+        "intent": "Solution seeking",
+        "business_relevance": "Connects directly to Agent Hub and Customer Agent capabilities.",
+        "target_audience": "Customer success leaders, operations managers"
+      },
+      {
+        "query": "all in one sales and marketing platform",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Product evaluation",
+        "business_relevance": "Captures prospects seeking to consolidate disconnected business tools.",
+        "target_audience": "Business executives, sales directors"
+      },
+      {
+        "query": "customer platform with free CRM tools",
+        "platforms": [
+          "Google",
+          "Facebook"
+        ],
+        "intent": "Transactional evaluation",
+        "business_relevance": "Targets users looking to start with free tools before upgrading to premium software.",
+        "target_audience": "Startup founders, entrepreneurs"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "customer platform software",
+      "secondary_keywords": [
+        "CRM software",
+        "marketing automation",
+        "sales CRM",
+        "AI customer agents"
+      ],
+      "long_tail_keywords": [
+        "all-in-one CRM and marketing platform",
+        "AI agents for customer service and sales"
+      ],
+      "recommended_title": "HubSpot | Customer Platform & CRM Software for Business Growth",
+      "meta_description": "Discover HubSpot's customer platform featuring marketing, sales, service, content, and CRM software powered by AI to help your business grow.",
+      "supporting_content": [
+        "CRM Implementation Guide",
+        "AI Agents in Customer Service Whitepaper",
+        "Small Business Software Comparison Hub",
+        "Marketing Automation Best Practices"
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Marketing Hub",
+        "description": "Attract and convert the right leads with campaign management and personalized content tools.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Marketing Teams",
+        "main_benefit": "Generate better leads and run personalized campaigns.",
+        "evidence_status": "website_content",
+        "evidence_url": "https://www.hubspot.com/",
+        "evidence_excerpt": "Marketing Hub"
+      },
+      {
+        "name": "Sales Hub",
+        "description": "Generate quality leads, automate prospecting, and manage pipelines to accelerate revenue.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Sales Teams",
+        "main_benefit": "Close deals faster and automate prospecting.",
+        "evidence_status": "website_content",
+        "evidence_url": "https://www.hubspot.com/",
+        "evidence_excerpt": "Sales Hub"
+      },
+      {
+        "name": "Service Hub",
+        "description": "Streamline and scale support to serve customers faster and drive retention.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Customer Support Teams",
+        "main_benefit": "Improve response times and boost customer satisfaction.",
+        "evidence_status": "website_content",
+        "evidence_url": "https://www.hubspot.com/",
+        "evidence_excerpt": "Service Hub"
+      },
+      {
+        "name": "Content Hub",
+        "description": "Create content that clicks with your audience, build pages, and publish across channels.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Content Creators and Marketers",
+        "main_benefit": "Stay on brand while publishing multi-channel content.",
+        "evidence_status": "website_content",
+        "evidence_url": "https://www.hubspot.com/",
+        "evidence_excerpt": "Content Hub"
+      },
+      {
+        "name": "Smart CRM",
+        "description": "Keep all customer data in one place, clean, connected, and actionable.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Business Operations",
+        "main_benefit": "Unified intelligence from scattered customer data.",
+        "evidence_status": "website_content",
+        "evidence_url": "https://www.hubspot.com/",
+        "evidence_excerpt": "Smart CRM"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Small Business Owners",
+        "Sales Managers",
+        "Marketing Directors",
+        "Customer Service Leaders"
+      ],
+      "secondary_audience": [
+        "Entrepreneurs",
+        "Startup Founders",
+        "Business Development Executives"
+      ],
+      "industries": [
+        "Technology",
+        "E-Commerce",
+        "Professional Services",
+        "Non-Profit",
+        "Sports and Recreation"
+      ],
+      "business_types": [
+        "Small Business",
+        "Mid-Sized Business",
+        "Enterprise"
+      ],
+      "customer_needs": [
+        "Centralized customer data",
+        "Lead generation and conversion",
+        "Automated sales prospecting",
+        "Scalable customer support",
+        "AI-driven productivity tools"
+      ],
+      "geographic_focus": [
+        "Global"
+      ],
+      "recommended_segments": [
+        "Small business owners seeking an all-in-one starter bundle",
+        "Enterprise companies needing unified AI customer platforms"
+      ],
+      "customer_profiles": [
+        "Data-driven marketing leaders looking for campaign automation",
+        "Sales directors aiming to shorten sales cycles"
+      ],
+      "potential_interests": [
+        "Artificial Intelligence in Business",
+        "Sales Pipeline Optimization",
+        "Marketing Automation",
+        "Customer Relationship Management"
+      ]
+    }
+  },
+  "model_info": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "token_usage": {
+      "input_tokens": 1959,
+      "output_tokens": 1335,
+      "total_tokens": 3294
+    },
+    "response_seconds": 4.639
+  },
+  "source_summary": {
+    "title": "HubSpot | Software & Tools for your Business - Homepage",
+    "meta_description": "HubSpot's customer platform includes all the marketing, sales, customer service, and CRM software you need to grow your business.",
+    "characters_extracted": 5211
+  },
+  "limitations": [
+    "Competitor name mentions do not verify competitors' feature claims; external research is not performed",
+    "Recommended search queries are not measured search volume data",
+    "JavaScript-only content may be missing from the source HTML",
+    "Inferred services are suggestions, not confirmed offerings",
+    "Evidence excerpts verify name mentions only; detailed claims about features, strengths, weaknesses and metrics require independent review"
+  ]
+}

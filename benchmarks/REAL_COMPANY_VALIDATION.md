@@ -29,3 +29,16 @@ The actual v1.0 **Jira** Render capture `evidence/jira-render-live-response.json
 ## Quality boundary
 
 The after-LLM `improve_and_audit` function may recover product names from model-labelled website services if distinctive service tokens also occur in the extracted HTML text. It never fills competitors from a canned list. It preserves empty competitors and unchanged SEO proposals as explicit limitation notices; this is preferable to presenting generated content as verified research. Further improvement would require a real, reliable search/competitor data API with source citations and budget controls.
+
+## v1.3 review — actual saved outputs
+
+- Jira and Shopify v1.1 examples were captured locally and stored with descriptive names under `evidence/`; reported 3 candidate peers each (not all claims sourced).
+- HubSpot v1.2 **live** example originally returned HTTP 200 but mistakenly included `Salesforce (Competitor 2 placeholder / Freshworks)`. The original flawed response is retained as a known-bad fixture in `tests/fixtures/`, and v1.3 regression checks assert that this record is removed without creating an unverified replacement.
+- The offline review command now matches a reference company by its homepage when the catalog has exactly one entry for that domain; it reports placeholder peers, duplicates, invalid evidence fields, repeated SEO and quantified claims. **This is not a third-party fact-checker.**
+
+Review commands, **no API requests**:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.assess_real_company tests/fixtures/hubspot-v1.2-known-bad.json
+.\.venv\Scripts\python.exe -m pytest -q
+```

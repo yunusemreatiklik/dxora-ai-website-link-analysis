@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 
 from app.schemas import AIAnalysis
+from app.services.competitor_guard import clean_name, same_entity, is_own_brand
 from app.services.website_extractor import ExtractedWebsite
 
 
@@ -37,6 +38,27 @@ def _source_mention(page: ExtractedWebsite, name: str) -> str | None:
             end = min(len(source), match.end() + 90)
             return source[start:end].strip()
     return None
+
+
+# Unsupported numerical performance / adoption claims must not be presented as
+# facts merely because a model wrote them. This is deliberately a narrow gate:
+# it does not purport to fact-check all non-numerical marketing statements.
+_NUMERICAL_CLAIM = re.compile(
+    r"\b\d[\d,.]*\s*(?:\+|%|million\b|billion\b|apps\b|customers\b|"
+    r"companies\b|integrations\b|hours\b|countries\b|users\b)|"
+    r"\b(?:hundreds|thousands|millions|billions) of\b",
+    re.I,
+)
+
+
+def _unsupported_numbers(claim: str, source: str) -> bool:
+    matches = list(_NUMERICAL_CLAIM.finditer(claim))
+    if not matches:
+        return False
+    # Matching a numeric expression is at most evidence that the publisher
+    # made the same claim, NOT independent third-party validation.
+    normalized_source = _normalize(source)
+    return any(_normalize(m.group()) not in normalized_source for m in matches)
 
 
 def improve_and_audit(page: ExtractedWebsite, result: AIAnalysis) -> tuple[AIAnalysis, list[str]]:
@@ -75,22 +97,38 @@ def improve_and_audit(page: ExtractedWebsite, result: AIAnalysis) -> tuple[AIAna
     # Reject fabricated source references. A site mentioning a competitor's name
     # DOES NOT verify the claimed competitor's capabilities or disadvantages.
     competitors = []
+    rejected_competitors = 0
+    deduplicated_competitors = 0
     downgraded_competitors = 0
     for competitor in analysis.competitor_analysis.competitors:
-        excerpt = _source_mention(page, competitor.name)
+        cleaned_name = clean_name(competitor.name)
+        if cleaned_name is None or is_own_brand(cleaned_name, result.brand.name):
+            rejected_competitors += 1
+            continue
+        if any(same_entity(cleaned_name, prior.name) for prior in competitors):
+            deduplicated_competitors += 1
+            continue
+        excerpt = _source_mention(page, cleaned_name)
         if competitor.evidence_status == "mentioned_on_website" and excerpt:
-            competitors.append(competitor.model_copy(update={
+            cleaned = competitor.model_copy(update={
+                "name": cleaned_name,
                 "evidence_url": page.final_url,
                 "evidence_excerpt": excerpt,
-            }))
+            })
         else:
             if competitor.evidence_status == "mentioned_on_website":
                 downgraded_competitors += 1
-            competitors.append(competitor.model_copy(update={
+            cleaned = competitor.model_copy(update={
+                "name": cleaned_name,
                 "evidence_status": "unverified_suggestion",
                 "evidence_url": None,
                 "evidence_excerpt": None,
-            }))
+            })
+        competitors.append(cleaned)
+    if rejected_competitors:
+        notices.append(f"Removed {rejected_competitors} placeholder, ambiguous or self-competitor names")
+    if deduplicated_competitors:
+        notices.append(f"Removed {deduplicated_competitors} duplicate competitor candidates")
     if downgraded_competitors:
         notices.append(
             f"{downgraded_competitors} claimed competitor source mentions were unsupported and "
@@ -101,7 +139,37 @@ def improve_and_audit(page: ExtractedWebsite, result: AIAnalysis) -> tuple[AIAna
     elif len(competitors) < 3:
         notices.append("Fewer than three competitor candidates identified; do not invent missing names")
 
-    revised_competitors = analysis.competitor_analysis.model_copy(update={"competitors": competitors})
+    # Avoid unverifiable numerical claims in model-authored competitive strengths.
+    # Unverified qualitative comparisons remain suggestions, not facts.
+    page_source = " ".join([page.title, page.meta_description, *page.headings, page.text])
+    numerical_removed = 0
+
+    def keep_source_metrics(claims: list[str]) -> list[str]:
+        nonlocal numerical_removed
+        kept = []
+        for claim in claims:
+            if _unsupported_numbers(claim, page_source):
+                numerical_removed += 1
+            else:
+                kept.append(claim)
+        return kept
+
+    for index, competitor in enumerate(competitors):
+        competitors[index] = competitor.model_copy(update={
+            "strengths": keep_source_metrics(competitor.strengths),
+            "weaknesses_or_gaps": keep_source_metrics(competitor.weaknesses_or_gaps),
+        })
+    revised_competitors = analysis.competitor_analysis.model_copy(update={
+        "competitors": competitors,
+        "strengths": keep_source_metrics(analysis.competitor_analysis.strengths),
+        "opportunities": keep_source_metrics(analysis.competitor_analysis.opportunities),
+        "competitive_advantages": keep_source_metrics(analysis.competitor_analysis.competitive_advantages),
+    })
+    if numerical_removed:
+        notices.append(
+            f"Removed {numerical_removed} quantified competitive claims not present in fetched source; "
+            "claims quoted by the source are still not independently verified"
+        )
     revised_analysis = analysis.model_copy(update={
         "competitor_analysis": revised_competitors,
         "top_services": sanitized_services,

@@ -1,0 +1,263 @@
+{
+  "success": true,
+  "status": "analysis_complete",
+  "website": "https://www.atlassian.com/software/jira",
+  "brand": {
+    "name": "Jira (Atlassian)",
+    "category": "Project Management Software",
+    "summary": "Jira is a project management and team collaboration software for the AI era, helping engineering, marketing, HR, and operations teams plan, track, and orchestrate work with AI agents and built-in context graphs.",
+    "main_products_services": [
+      "Jira",
+      "Confluence",
+      "Loom",
+      "Rovo",
+      "Teamwork Graph"
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Jira competes in the collaborative work management and enterprise project tracking space against established software giants and agile workflow platforms.",
+      "competitors": [
+        {
+          "name": "Asana",
+          "main_service": "Work management and project tracking",
+          "strengths": [
+            "Possible strong user interface for non-technical teams",
+            "Possible intuitive task tracking features"
+          ],
+          "weaknesses_or_gaps": [
+            "Possible less robust developer tool integrations compared to Jira"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        },
+        {
+          "name": "Monday.com",
+          "main_service": "Customizable work OS and project management",
+          "strengths": [
+            "Possible high flexibility in workflow automation",
+            "Possible strong visual dashboard capabilities"
+          ],
+          "weaknesses_or_gaps": [
+            "Possible lack of deep native developer pipeline integration"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        },
+        {
+          "name": "Microsoft Azure DevOps",
+          "main_service": "Developer-focused project tracking and CI/CD pipelines",
+          "strengths": [
+            "Possible tight integration with Microsoft enterprise ecosystem",
+            "Possible advanced developer tooling"
+          ],
+          "weaknesses_or_gaps": [
+            "Possible steeper learning curve for non-technical business teams"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null
+        }
+      ],
+      "strengths": [
+        "Recognized as a Leader in the Gartner Magic Quadrant for Collaborative Work Management",
+        "Strong adoption among Fortune 500 companies",
+        "Advanced AI agent orchestration and Teamwork Graph capabilities"
+      ],
+      "opportunities": [
+        "Expanding non-technical team adoption like marketing and HR",
+        "Integrating autonomous AI agents more deeply into enterprise workflows"
+      ],
+      "competitive_advantages": [
+        "Proprietary Teamwork Graph providing deep context across tech stacks",
+        "Native Rovo AI teammates that research, draft, and take action",
+        "Trusted by over 300,000 companies globally"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "AI project management software for enterprise teams",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Commercial evaluation",
+        "business_relevance": "High relevance for attracting large enterprise buyers looking for AI-driven productivity tools.",
+        "target_audience": "IT Directors, Engineering Managers, Enterprise PMOs"
+      },
+      {
+        "query": "agile project management tool with AI agents",
+        "platforms": [
+          "Google",
+          "X"
+        ],
+        "intent": "Informational and evaluation",
+        "business_relevance": "Captures tech-forward teams looking for the latest automation and agentic workflow features.",
+        "target_audience": "Product Managers, Software Engineers, Agile Coaches"
+      },
+      {
+        "query": "Jira vs Asana for marketing and engineering teams",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Comparison",
+        "business_relevance": "Helps capture users evaluating Jira's expansion beyond pure IT into cross-functional business teams.",
+        "target_audience": "Operations Managers, Marketing Directors"
+      },
+      {
+        "query": "collaborative work management platform with enterprise search",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Commercial evaluation",
+        "business_relevance": "Targets buyers interested in unified search across company tools via features like AI Search and Rovo.",
+        "target_audience": "Chief Information Officers, Operations Leaders"
+      },
+      {
+        "query": "project tracking software for remote teams",
+        "platforms": [
+          "Google",
+          "Instagram"
+        ],
+        "intent": "Informational",
+        "business_relevance": "Drives awareness for teams needing centralized planning and async video/doc collaboration.",
+        "target_audience": "Team Leads, Remote Project Managers"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "AI project management software",
+      "secondary_keywords": [
+        "collaborative work management",
+        "enterprise project tracking",
+        "AI agents for workflows",
+        "team collaboration platform"
+      ],
+      "long_tail_keywords": [
+        "project management tool with AI agents and context graph",
+        "agile project management for engineering and marketing teams"
+      ],
+      "recommended_title": "Jira | AI-Powered Project Management & Workflow Automation",
+      "meta_description": "Discover Jira, the leading project management software for the AI era. Orchestrate tasks, track projects, and deploy AI agents with Atlassian's Teamwork Graph.",
+      "supporting_content": [
+        "Customer success stories and ROI case studies",
+        "Detailed breakdown of AI features like Rovo and Teamwork Graph",
+        "Cross-functional use case guides for engineering, marketing, and HR"
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Jira Project Management",
+        "description": "Core project planning, sprint tracking, and task management platform for technical and business teams.",
+        "target_industry": "Technology, Software, Marketing, Operations",
+        "target_customer": "Enterprise Teams, Project Managers, Developers",
+        "main_benefit": "Brings cross-functional teams into a shared workspace to plan and track progress faster.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Rovo AI Teammates",
+        "description": "AI-powered assistants that join workflows to research, draft, and take action across connected tools.",
+        "target_industry": "Cross-Industry Enterprise",
+        "target_customer": "Knowledge Workers, Legal, Marketing, Engineering",
+        "main_benefit": "Saves hundreds of hours by automating busywork and surfacing institutional knowledge.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Teamwork Graph",
+        "description": "Context graph connecting enterprise tech stacks to deliver accurate context to AI tools via MCP and CLI.",
+        "target_industry": "Software Engineering and IT",
+        "target_customer": "DevOps Engineers, Enterprise Architects",
+        "main_benefit": "Provides superior context with fewer tokens for AI coding agents and tools.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Confluence Integration",
+        "description": "Documentation and spec management tool that integrates seamlessly with Jira for unified team context.",
+        "target_industry": "Cross-Industry Enterprise",
+        "target_customer": "Product Teams, Writers, Engineers",
+        "main_benefit": "Accelerates decision-making and provides a single source of truth for project specs.",
+        "evidence_status": "website_content"
+      },
+      {
+        "name": "Loom Async Video",
+        "description": "Video messaging tool embedded within the Jira ecosystem for async updates and AI-generated notes.",
+        "target_industry": "Cross-Industry Enterprise",
+        "target_customer": "Remote Teams, Managers, Communicators",
+        "main_benefit": "Reduces unnecessary meetings through clear, asynchronous video communication.",
+        "evidence_status": "website_content"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Software Engineering Teams",
+        "Product Managers",
+        "Agile Project Managers",
+        "Enterprise IT Leaders"
+      ],
+      "secondary_audience": [
+        "Marketing Teams",
+        "HR Professionals",
+        "Legal Teams",
+        "Operations Managers"
+      ],
+      "industries": [
+        "Software and Technology",
+        "Financial Services",
+        "Healthcare",
+        "Retail and Manufacturing",
+        "Media and Marketing"
+      ],
+      "business_types": [
+        "Fortune 500 Enterprises",
+        "Mid-market Companies",
+        "Growing Startups"
+      ],
+      "customer_needs": [
+        "Unified cross-functional project visibility",
+        "Automated workflows powered by AI agents",
+        "Enterprise-grade security and audit trails",
+        "Reduction of busywork and operational overhead"
+      ],
+      "geographic_focus": [
+        "Global presence across 200+ countries and territories"
+      ],
+      "recommended_segments": [
+        "Enterprise Engineering Organizations",
+        "Cross-Functional Business Operations Teams",
+        "AI-Forward Product Development Teams"
+      ],
+      "customer_profiles": [
+        "Technical leaders seeking developer pipeline automation",
+        "Business operations directors aiming to unify IT and non-IT workflows",
+        "Enterprise executives looking for secure, scalable AI productivity solutions"
+      ],
+      "potential_interests": [
+        "Artificial Intelligence and Automation",
+        "Agile Methodologies",
+        "Enterprise Productivity Software",
+        "DevOps and Coding Agents",
+        "Remote Team Collaboration"
+      ]
+    }
+  },
+  "model_info": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "token_usage": {
+      "input_tokens": 1910,
+      "output_tokens": 1483,
+      "total_tokens": 3393
+    },
+    "response_seconds": 5.288
+  },
+  "source_summary": {
+    "title": "Jira | Project Management for the AI Era | Atlassian",
+    "meta_description": "Jira brings teams together to reach the next level of productivity with AI agents that orchestrate, plan, and track projects at scale.",
+    "characters_extracted": 4585
+  },
+  "limitations": [
+    "Competitors not independently verified unless an evidence URL is provided",
+    "Recommended search queries are not measured search volume data",
+    "JavaScript-only content may be missing from the source HTML",
+    "Inferred services are suggestions, not confirmed offerings"
+  ]
+}

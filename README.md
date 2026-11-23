@@ -6,7 +6,7 @@
 
 FastAPI endpoint for real website HTML extraction, safe URL validation and **five-section, LLM-generated business intelligence**. Built against [Dxora Technologies' Link Analysis practical test](https://github.com/chivoxai/practical-test/blob/main/link-analysis.md).
 
-**Status:** v1.1 quality improvements; v1.0 was deployed and verified publicly on Render. v1.1 requires a new local + live validation before claiming deployment. The README does not imply tests against OpenAI/Claude or independently verified competitor research.
+**Status:** The **v1.2.0** release (`28680d2`) was confirmed **Live** on Render on 23 November 2026. The **v1.3.0 patch** improves LLM output hygiene and offline evaluation; it is **not deployed or live-tested yet**. No independent external competitor research, or live OpenAI/Anthropic benchmark, is claimed.
 
 ## Capabilities
 
@@ -28,7 +28,9 @@ POST /link-analysis
    |      -> BeautifulSoup content cleaning -> 12k-character model context
    +-- Gemini REST generateContent (application/json)
    |      -> bounded 5xx/timeout retries; 429 quota-aware handling
-   +-- Pydantic validates five analysis sections and exactly five queries/services
+   +-- Pydantic validates five sections and five DISTINCT queries/services
+   +-- deterministic competitor hygiene (no placeholders, aliases, self-comparisons)
+   +-- source-name evidence guard; unsupported quantitative claims flagged/removed
    +-- typed JSON response with model token counts and response_seconds
 ```
 
@@ -43,6 +45,9 @@ app/limits.py                     per-client rate, daily and concurrency demo gu
 app/utils/validators.py           URL checks, public DNS address selection
 app/services/website_extractor.py pinned-IP HTML fetch/redirect checks, text extraction
 app/services/llm_service.py       Gemini client, prompt, JSON parse and retry
+app/services/quality.py           source-name evidence gate and output filtering
+app/services/competitor_guard.py  generic competitor-name checks and de-duplication
+scripts/assess_real_company.py    offline real-response structure/review checker
 scripts/benchmark_gemini.py       repeatable three-model live experiment
 MODEL_COMPARISON.md               pricing, measured evidence, model recommendation
 evidence/jira-live-response.json   captured real Jira success response
@@ -127,7 +132,7 @@ For upstream **429**, the application returns HTTP 429 rather than masking it as
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-The offline suite covers URL validation, DNS rejection, **pinning the validated public IP for the connection while preserving Host/SNI**, redirect checks, HTML extraction, large bodies, model response contracts, Gemini errors, OpenAPI schema and demo limits. The original suite had 26 passing tests; v1.0 adds regression tests. **These tests use mocks and do not incur LLM API charges**. A separate real Jira response is captured under `evidence/`.
+The offline suite covers URL validation, DNS/IP pinning and Host/SNI, redirect checks, MIME type / empty HTML rejection, extraction size guards, duplicate queries/services, LLM parsing, Gemini error handling, competitor placeholders/duplicates, and source-name evidence rules. **74 tests passed in the development environment (Python 3.13)**. Re-run on the target **Python 3.12** environment before deployment. Mocks are used; **no Gemini API quota or paid APIs are consumed by these tests**.
 
 ## LLM model comparison and optimization
 
@@ -153,8 +158,9 @@ See **[MODEL_COMPARISON.md](MODEL_COMPARISON.md)** for the source-based comparis
 - [x] Published source-model pricing and justified cost choice
 - [x] Recorded real Jira response (tokens/analysis)
 - [x] Run 3-model/3-website live speed/schema benchmark (7/9 passed; factual grounding review remains separate)
-- [ ] Add current screenshots/logs of local and deployed execution
-- [x] Deploy v1.0 publicly; confirm `/docs` and `/link-analysis` work from outside localhost (v1.1 redeploy pending)
+- [ ] Add current screenshots/logs of local and deployed execution to the repository
+- [x] Deploy v1.2 (`28680d2`) publicly and test `/health` plus HubSpot `/link-analysis`
+- [ ] Revalidate v1.3 with local pytest and one live API result after publishing
 - [ ] Record URLs and final chosen discussion time in the email to `hr@chivoxai.com`
 - [ ] Confirm company LinkedIn/CREST Instagram verification per assignment
 
@@ -174,7 +180,7 @@ Review a saved live JSON response **without any API key or network call**:
 .\.venv\Scripts\python.exe -m scripts.assess_real_company evidence/jira-render-live-response.json
 ```
 
-The original Jira capture is expected to report quality warnings. Re-run it **after** v1.1 deployment and review new responses; 41 offline tests passed in the development environment, but a live v1.1 success must still be independently confirmed.
+The original Jira capture is expected to report quality warnings. Separately reviewed v1.1 Jira and Shopify outputs are retained as labelled examples in `evidence/`; a **known-bad v1.2 HubSpot response** is kept ONLY in `tests/fixtures/` to prevent recurrence of a real placeholder bug. Passing offline tests does not establish factual accuracy or guarantee that future LLM calls will succeed.
 
 
 ## v1.2 conservative source-evidence gate (offline, no search provider)
@@ -195,3 +201,22 @@ release does **not** implement independent external competitor research, Tavily,
 or any paid additional APIs. The resulting JSON accurately distinguishes what
 we can and cannot substantiate from the supplied web page. Do not call this
 full fact-checking. Run `python -m pytest -q` before deploying.
+
+
+## v1.3 — output integrity and offline review (not yet deployed)
+
+- Reject placeholders and ambiguous competitor names such as `Salesforce (Competitor 2 placeholder / Freshworks)`; filter repeated aliases and a brand listed as its own competitor. **Never fill missing competitors with invented names.**
+- Keep numeric competitive claims only when the exact numeric expression is present in the submitted website's extracted text. A source mention is **not third-party fact verification**.
+- Reject duplicated target queries or top-service names at Pydantic validation rather than silently claiming five distinct results.
+- Reject HTML that has no usable text/metadata and content types that merely *contain* `text/html` as a filename parameter.
+- Match real-company reference cases by exact path or unambiguous homepage, including Shopify and HubSpot. Flag placeholders, repeated competitors, invalid evidence and quantitative claims for human review.
+- See [`V1_3_CHANGELOG.md`](V1_3_CHANGELOG.md); tests use the actual previously captured **bad HubSpot response** as a regression fixture. No new LLM calls and no extra third-party API dependency.
+
+### Published demo for the previously verified v1.2 release
+
+- Base URL: https://dxora-ai-link-analysis-rni5.onrender.com
+- Health: https://dxora-ai-link-analysis-rni5.onrender.com/health
+- Swagger: https://dxora-ai-link-analysis-rni5.onrender.com/docs
+- Endpoint: `POST https://dxora-ai-link-analysis-rni5.onrender.com/link-analysis`
+
+The currently live revision should be checked separately from this patch. Free Render instances sleep when idle; free Gemini quotas can produce `429`, which is reported rather than bypassed. This demo is not a guaranteed always-available production SLA.

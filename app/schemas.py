@@ -1,6 +1,6 @@
 """Typed request and LLM-generated result models."""
 from typing import Literal
-from pydantic import AnyHttpUrl, BaseModel, Field
+from pydantic import AnyHttpUrl, BaseModel, Field, model_validator
 
 
 class LinkAnalysisRequest(BaseModel):
@@ -78,6 +78,17 @@ class Analysis(BaseModel):
     seo_improvements: SEOImprovements
     top_services: list[Service] = Field(min_length=5, max_length=5)
     target_audience: TargetAudience
+
+    @model_validator(mode="after")
+    def reject_duplicate_mandatory_sections(self):
+        """Five fields must describe five DISTINCT searches and services."""
+        queries = [" ".join(item.query.casefold().split()) for item in self.target_search_queries]
+        services = [" ".join(item.name.casefold().split()) for item in self.top_services]
+        if len(set(queries)) != 5:
+            raise ValueError("target_search_queries must contain five distinct queries")
+        if len(set(services)) != 5:
+            raise ValueError("top_services must contain five distinct services")
+        return self
 
 
 class AIAnalysis(BaseModel):
