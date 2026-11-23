@@ -13,4 +13,10 @@
 
 **Unresolved external limits:** Gemini provider 429/quota cannot be bypassed by application code; no independent online competitor fact-checking; dynamic JS-only site data may be incomplete; per-process demo limiter is not multi-instance durable; factual accuracy has not been numerically benchmarked.
 
-**Deployment:** Do not send a submission email, push to GitHub, or deploy to Render until the applicant has reviewed the patch and verified `pytest` on their own machine.
+**Deployment verification (23 November 2026):** The applicant ran 74/74 local offline tests, pushed commit `d9ddb03` to public GitHub `main`, and confirmed Render marked that commit **Live**. The public `/health` response returned `{'status':'ok','version':'1.3.0'}`. Cropped screenshots are included under `evidence/`. No new v1.3 full analysis POST has been asserted or performed as part of this verification. No submission email has been sent.
+
+## 23 November 2026 — research documentation addendum
+
+Independent web research was carried out for the three already analyzed companies: three Jira alternatives, four Shopify alternatives and three HubSpot alternatives (10 entries). Each has official product documentation and editorial comparison context. The offline audit script reconciles captured real POST outputs without any additional Gemini API calls. Production FastAPI analysis logic is unchanged; research is not hidden as hard-coded LLM output and no new v1.3 POST is claimed.
+
+This research/evidence addendum adds 6 offline tests, giving **80 passing tests in the review environment**. The applicant's previous Windows run of 74 tests remains valid for the earlier code release; the new 6 tests are independent read-only research assertions.

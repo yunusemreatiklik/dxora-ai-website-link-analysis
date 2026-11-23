@@ -1,0 +1,129 @@
+[
+  {
+    "case": "jira",
+    "company": "Jira (Atlassian)",
+    "saved_real_post": "evidence/jira-v1.1-local-response.json",
+    "saved_post_status": "analysis_complete",
+    "historical_post_not_v1_3": true,
+    "recorded_model": "gemini-3.5-flash-lite",
+    "saved_observed_competitors": [
+      "Asana",
+      "Monday.com",
+      "Microsoft Azure DevOps"
+    ],
+    "matched_to_external_research": [
+      "Asana",
+      "monday.com",
+      "Azure DevOps (Azure Boards)"
+    ],
+    "bad_placeholder_names": [],
+    "other_observed_candidates_not_in_selected_research": [],
+    "source_backed_competitors": [
+      {
+        "name": "Asana",
+        "official_product_source": "https://asana.com/features/project-management",
+        "comparative_editorial_source": "https://zapier.com/blog/jira-alternatives/"
+      },
+      {
+        "name": "monday.com",
+        "official_product_source": "https://support.monday.com/hc/en-us/articles/360014437599-Project-management-with-monday-com",
+        "comparative_editorial_source": "https://www.techrepublic.com/article/monday-com-vs-jira/"
+      },
+      {
+        "name": "Azure DevOps (Azure Boards)",
+        "official_product_source": "https://learn.microsoft.com/en-us/azure/devops/boards/get-started/what-is-azure-boards",
+        "comparative_editorial_source": "https://www.moveworkforward.com/blog/azure-devops-vs-jira"
+      }
+    ],
+    "matched_observed_count": 3,
+    "researched_competitor_count": 3,
+    "semantic_caveat": "Research corroborates vendor identity and advertised product category, not all model-authored strengths, weaknesses, or numerical claims."
+  },
+  {
+    "case": "shopify",
+    "company": "Shopify",
+    "saved_real_post": "evidence/shopify-v1.1-local-response.json",
+    "saved_post_status": "analysis_complete",
+    "historical_post_not_v1_3": true,
+    "recorded_model": "gemini-3.5-flash-lite",
+    "saved_observed_competitors": [
+      "WooCommerce",
+      "Squarespace",
+      "Wix eCommerce"
+    ],
+    "matched_to_external_research": [
+      "WooCommerce",
+      "Squarespace Commerce",
+      "Wix eCommerce"
+    ],
+    "bad_placeholder_names": [],
+    "other_observed_candidates_not_in_selected_research": [],
+    "source_backed_competitors": [
+      {
+        "name": "WooCommerce",
+        "official_product_source": "https://woocommerce.com/download/",
+        "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/"
+      },
+      {
+        "name": "Squarespace Commerce",
+        "official_product_source": "https://support.squarespace.com/hc/en-us/articles/206779077-Sell-on-Squarespace",
+        "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/"
+      },
+      {
+        "name": "Wix eCommerce",
+        "official_product_source": "https://www.wix.com/ecommerce/online-store",
+        "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/"
+      },
+      {
+        "name": "BigCommerce",
+        "official_product_source": "https://www.bigcommerce.com/product/",
+        "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/"
+      }
+    ],
+    "matched_observed_count": 3,
+    "researched_competitor_count": 4,
+    "semantic_caveat": "Research corroborates vendor identity and advertised product category, not all model-authored strengths, weaknesses, or numerical claims."
+  },
+  {
+    "case": "hubspot",
+    "company": "HubSpot",
+    "saved_real_post": "tests/fixtures/hubspot-v1.2-known-bad.json",
+    "saved_post_status": "analysis_complete",
+    "historical_post_not_v1_3": true,
+    "recorded_model": "gemini-3.5-flash-lite",
+    "saved_observed_competitors": [
+      "Salesforce",
+      "Salesforce (Competitor 2 placeholder / Freshworks)",
+      "Zendesk"
+    ],
+    "matched_to_external_research": [
+      "Salesforce Sales Cloud"
+    ],
+    "bad_placeholder_names": [
+      "Salesforce (Competitor 2 placeholder / Freshworks)"
+    ],
+    "other_observed_candidates_not_in_selected_research": [
+      "Zendesk"
+    ],
+    "source_backed_competitors": [
+      {
+        "name": "Salesforce Sales Cloud",
+        "official_product_source": "https://www.salesforce.com/sales/cloud/",
+        "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/"
+      },
+      {
+        "name": "Zoho CRM",
+        "official_product_source": "https://www.zoho.com/crm/features.html",
+        "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/"
+      },
+      {
+        "name": "Pipedrive",
+        "official_product_source": "https://www.pipedrive.com/en/features/pipeline-management",
+        "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/"
+      }
+    ],
+    "matched_observed_count": 1,
+    "researched_competitor_count": 3,
+    "semantic_caveat": "Research corroborates vendor identity and advertised product category, not all model-authored strengths, weaknesses, or numerical claims."
+  }
+]

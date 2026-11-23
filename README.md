@@ -6,7 +6,7 @@
 
 FastAPI endpoint for real website HTML extraction, safe URL validation and **five-section, LLM-generated business intelligence**. Built against [Dxora Technologies' Link Analysis practical test](https://github.com/chivoxai/practical-test/blob/main/link-analysis.md).
 
-**Status:** The **v1.2.0** release (`28680d2`) was confirmed **Live** on Render on 23 November 2026. The **v1.3.0 patch** improves LLM output hygiene and offline evaluation; it is **not deployed or live-tested yet**. No independent external competitor research, or live OpenAI/Anthropic benchmark, is claimed.
+**Status:** **v1.3.0** (`d9ddb03`) was confirmed **Live** on Render on **23 November 2026**, and its public `/health` endpoint returned `{'status':'ok','version':'1.3.0'}` (see `evidence/screenshots/09-v1.3-render-live-d9ddb03.png` and `evidence/screenshots/10-v1.3-health.png`). **74 local offline tests passed.** The historical Jira/Shopify/HubSpot POST captures are real model API responses from earlier releases, each with `analysis_complete`, five search queries and five services. This documentation upgrade requires no new POST or Gemini usage. As of 23 November 2026, a **separate, manually source-checked competitor research pack** now covers the saved Jira, Shopify and HubSpot examples with official vendor documents and editorial comparisons (`research/audit/COMPETITOR_EVIDENCE_REVIEW.md`). This is **not an automatic external-search engine in the deployed API**; the LLM's historical response values have not been rewritten. No cross-provider live OpenAI/Anthropic benchmark is claimed.
 
 ## Capabilities
 
@@ -132,7 +132,7 @@ For upstream **429**, the application returns HTTP 429 rather than masking it as
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-The offline suite covers URL validation, DNS/IP pinning and Host/SNI, redirect checks, MIME type / empty HTML rejection, extraction size guards, duplicate queries/services, LLM parsing, Gemini error handling, competitor placeholders/duplicates, and source-name evidence rules. **74 tests passed in the development environment (Python 3.13)**. Re-run on the target **Python 3.12** environment before deployment. Mocks are used; **no Gemini API quota or paid APIs are consumed by these tests**.
+The offline suite covers URL validation, DNS/IP pinning and Host/SNI, redirect checks, MIME type / empty HTML rejection, extraction size guards, duplicate queries/services, LLM parsing, Gemini error handling, competitor placeholders/duplicates, and source-name evidence rules. **74 offline tests passed in the applicant's local Windows environment** before the successful v1.3 GitHub push and Render deploy. These unit tests do not establish that every live LLM output is factually correct. Mocks are used; **no Gemini API quota or paid APIs are consumed by these tests**.
 
 ## LLM model comparison and optimization
 
@@ -158,13 +158,31 @@ See **[MODEL_COMPARISON.md](MODEL_COMPARISON.md)** for the source-based comparis
 - [x] Published source-model pricing and justified cost choice
 - [x] Recorded real Jira response (tokens/analysis)
 - [x] Run 3-model/3-website live speed/schema benchmark (7/9 passed; factual grounding review remains separate)
-- [ ] Add current screenshots/logs of local and deployed execution to the repository
-- [x] Deploy v1.2 (`28680d2`) publicly and test `/health` plus HubSpot `/link-analysis`
-- [ ] Revalidate v1.3 with local pytest and one live API result after publishing
+- [x] Add deployment and `/health` screenshots for v1.3 (`evidence/render-v1.3-*.png`); older POST response evidence is labelled with its actual release
+- [x] Deploy v1.3 (`d9ddb03`) publicly and verify its `/health` response is `1.3.0`; older v1.2 HubSpot POST evidence is retained as a known-bad fixture
+- [x] Run 74 local tests and verify live v1.3 `/health` (fresh v1.3 `/link-analysis` POST not yet performed; do not claim it passed)
 - [ ] Record URLs and final chosen discussion time in the email to `hr@chivoxai.com`
 - [ ] Confirm company LinkedIn/CREST Instagram verification per assignment
 
 No password, API key or personal credential should be committed to this repository.
+
+## Source-backed competitor research — 23 November 2026
+
+The applicant already captured **three genuine POST analysis outputs** (`Jira`, `Shopify`, `HubSpot`) on earlier versions, with five services and five search queries per result. They must not be dismissed as absent or misrepresented as a fresh v1.3 POST.
+
+A reproducible **external-source competitor audit** now documents **3 Jira peers, 4 Shopify alternatives and 3 HubSpot peers (10 total)**. The research file `research/VERIFIED_COMPETITORS_2026-11-23.json` includes an **official product/help source** for each peer and independent/editorial comparison context, plus careful scope distinctions instead of untested negative claims. Exact historical model names are preserved for audit. The malformed HubSpot placeholder is explicitly rejected; three credible alternatives are separately documented, not fabricated into the saved model response.
+
+- [Read the full source-backed comparison](research/audit/COMPETITOR_EVIDENCE_REVIEW.md)
+- [Machine-readable source catalog](research/VERIFIED_COMPETITORS_2026-11-23.json)
+- [Offline evidence audit result](research/audit/audit-summary.json)
+
+Re-run evidence reconciliation **offline, without a model call**:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.audit_researched_competitors --output research/audit
+```
+
+This is **manual source research** for three submitted domains, not dynamic internet fact-checking of every possible website. Official product materials corroborate advertised offerings but not performance superiority; editorial comparisons can have commercial incentives. The live generic LLM endpoint remains non-hardcoded.
 
 ## Real-company evaluation and v1.1 quality guard
 
@@ -203,7 +221,7 @@ we can and cannot substantiate from the supplied web page. Do not call this
 full fact-checking. Run `python -m pytest -q` before deploying.
 
 
-## v1.3 — output integrity and offline review (not yet deployed)
+## v1.3 — output integrity and offline review (deployed; health verified)
 
 - Reject placeholders and ambiguous competitor names such as `Salesforce (Competitor 2 placeholder / Freshworks)`; filter repeated aliases and a brand listed as its own competitor. **Never fill missing competitors with invented names.**
 - Keep numeric competitive claims only when the exact numeric expression is present in the submitted website's extracted text. A source mention is **not third-party fact verification**.
@@ -212,11 +230,11 @@ full fact-checking. Run `python -m pytest -q` before deploying.
 - Match real-company reference cases by exact path or unambiguous homepage, including Shopify and HubSpot. Flag placeholders, repeated competitors, invalid evidence and quantitative claims for human review.
 - See [`V1_3_CHANGELOG.md`](V1_3_CHANGELOG.md); tests use the actual previously captured **bad HubSpot response** as a regression fixture. No new LLM calls and no extra third-party API dependency.
 
-### Published demo for the previously verified v1.2 release
+### Published v1.3 demo (23 November 2026)
 
 - Base URL: https://dxora-ai-link-analysis-rni5.onrender.com
 - Health: https://dxora-ai-link-analysis-rni5.onrender.com/health
 - Swagger: https://dxora-ai-link-analysis-rni5.onrender.com/docs
 - Endpoint: `POST https://dxora-ai-link-analysis-rni5.onrender.com/link-analysis`
 
-The currently live revision should be checked separately from this patch. Free Render instances sleep when idle; free Gemini quotas can produce `429`, which is reported rather than bypassed. This demo is not a guaranteed always-available production SLA.
+The live v1.3 `/health` response was confirmed; genuine earlier release POST captures are retained with their correct provenance. No duplicate live analysis call was needed for this documented research audit. Free Render instances sleep when idle; free Gemini quotas can produce `429`, which is reported rather than bypassed. This demo is not a guaranteed always-available production SLA.

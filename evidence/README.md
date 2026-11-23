@@ -4,6 +4,12 @@
 - `jira-render-live-response.json` is a real **Render v1.0** Jira API response captured on 22 November 2026; it is a successful HTTP 200 five-section result, but contains **0 competitors** and an empty main products list. Retained intentionally for honest regression tracking; do not call it a perfect result.
 - `jira-v1.1-local-response.json` and `shopify-v1.1-local-response.json` are previously captured, real **local** analyses; they have 3 candidate competitors each, but their market claims are not independently verified.
 - The 23 Nov 2026 v1.2 **HubSpot** live response is stored in `tests/fixtures/hubspot-v1.2-known-bad.json` for an offline regression test because it contained a placeholder competitor; do **not** present it as a valid v1.3 output.
-- v1.2 was published on Render (`28680d2`) and its `/health` returned v1.2.0; the v1.3 patch needs a separate deploy and verification.
+- v1.2 was previously published on Render (`28680d2`); **v1.3 is now published and its `/health` returned `1.3.0`** on 23 November 2026 at commit `d9ddb03`. `screenshots/09-v1.3-render-live-d9ddb03.png` and `screenshots/10-v1.3-health.png` are cropped screenshots showing that deployment and health evidence (the unrelated browser window was excluded). These screenshots do **not** certify a fresh v1.3 `/link-analysis` POST.
 - Add screenshots that do **not** reveal an API key. Screenshots can be taken from `/docs` showing request JSON and successful response; terminal test output; and the Render public `/health` and `/docs` endpoints.
 - For factual quality scores, run `python -m scripts.benchmark_gemini --live` and fill `benchmarks/MANUAL_REVIEW_TEMPLATE.csv` from the generated `benchmarks/sample_outputs/` JSON files.
+
+## Source-backed competitor research and genuine POST captures
+
+- The saved `jira-v1.1-local-response.json`, `shopify-v1.1-local-response.json`, and `tests/fixtures/hubspot-v1.2-known-bad.json` contain **real** historical `analysis_complete` POST results. The HubSpot sample contains one known malformed competitor and is deliberately labelled bad as a regression fixture.
+- A 23 November 2026 manual evidence audit cross-links historical model names to ten official vendor sources plus editorial context in `research/`. It runs without fresh LLM calls or altering historical JSON.
+- `evidence/screenshots/` contains **cropped** applicant screenshots; avoid uploading raw uncropped desktops or the private `internal_reference` captures.

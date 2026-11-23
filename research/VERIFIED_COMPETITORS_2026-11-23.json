@@ -1,0 +1,203 @@
+{
+  "review_date": "2026-11-23",
+  "research_scope": "Manually reviewed public competitor sources for the 3 already analyzed websites; no claim of generic real-time external source search inside the live FastAPI endpoint.",
+  "methodology": [
+    "Match established business category of submitted domain and real vendor product category.",
+    "Corroborate each name and core product capability with its own official product/help page.",
+    "For market overlap, cross-check with a comparative editorial article; editorial may have commercial/affiliate incentives.",
+    "Avoid fabricated prices, rankings, ROI, speed, defect rates and untested comparative strengths/weaknesses.",
+    "The current API may return AI suggestions tagged unverified; this source catalog is a separate independently assembled research artifact and does not silently replace LLM results."
+  ],
+  "cases": [
+    {
+      "key": "jira",
+      "brand": "Jira (Atlassian)",
+      "website": "https://www.atlassian.com/software/jira",
+      "sector": "Software issue tracking / work management",
+      "saved_real_post": "evidence/jira-v1.1-local-response.json",
+      "known_observed_names": [
+        "Asana",
+        "Monday.com",
+        "Microsoft Azure DevOps"
+      ],
+      "editorial_source": "https://zapier.com/blog/jira-alternatives/",
+      "competitors": [
+        {
+          "name": "Asana",
+          "aliases": [
+            "Asana, Inc."
+          ],
+          "main_service": "Collaborative project and task management",
+          "source_verified_capability": "Projects, portfolios, multi-team work and tasks",
+          "official_product_source": "https://asana.com/features/project-management",
+          "comparative_editorial_source": "https://zapier.com/blog/jira-alternatives/",
+          "evaluation_tradeoff_not_measured": "Cross-functional project management emphasis versus Jira software issue-tracking workflows; compare actual agile needs and plans.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "monday.com",
+          "aliases": [
+            "Monday.com",
+            "monday work management"
+          ],
+          "main_service": "Visual project/work management",
+          "source_verified_capability": "Customizable project boards, status tracking and workflows",
+          "official_product_source": "https://support.monday.com/hc/en-us/articles/360014437599-Project-management-with-monday-com",
+          "comparative_editorial_source": "https://www.techrepublic.com/article/monday-com-vs-jira/",
+          "evaluation_tradeoff_not_measured": "General work-management emphasis versus engineering-specific Jira workflows; test configuration and plan requirements.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "Azure DevOps (Azure Boards)",
+          "aliases": [
+            "Microsoft Azure DevOps",
+            "Azure Boards",
+            "Azure DevOps"
+          ],
+          "main_service": "Developer work planning and tracking",
+          "source_verified_capability": "Backlogs, work items, boards and sprint planning",
+          "official_product_source": "https://learn.microsoft.com/en-us/azure/devops/boards/get-started/what-is-azure-boards",
+          "comparative_editorial_source": "https://www.moveworkforward.com/blog/azure-devops-vs-jira",
+          "evaluation_tradeoff_not_measured": "Closest comparison is Azure Boards versus Jira issue tracking, not a complete feature-by-feature equivalence of Azure DevOps and Jira.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        }
+      ]
+    },
+    {
+      "key": "shopify",
+      "brand": "Shopify",
+      "website": "https://www.shopify.com/",
+      "sector": "E-commerce platforms",
+      "saved_real_post": "evidence/shopify-v1.1-local-response.json",
+      "known_observed_names": [
+        "WooCommerce",
+        "Squarespace",
+        "Wix eCommerce"
+      ],
+      "editorial_source": "https://zapier.com/blog/shopify-alternatives/",
+      "competitors": [
+        {
+          "name": "WooCommerce",
+          "aliases": [
+            "Woo Commerce"
+          ],
+          "main_service": "WordPress open-source commerce platform",
+          "source_verified_capability": "WordPress-based open-source commerce and control over store setup",
+          "official_product_source": "https://woocommerce.com/download/",
+          "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/",
+          "evaluation_tradeoff_not_measured": "WordPress-based implementation and hosting responsibilities versus a hosted Shopify experience; real total cost depends on requirements.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "Squarespace Commerce",
+          "aliases": [
+            "Squarespace"
+          ],
+          "main_service": "Website builder with online selling",
+          "source_verified_capability": "Store pages and physical/digital products or services selling",
+          "official_product_source": "https://support.squarespace.com/hc/en-us/articles/206779077-Sell-on-Squarespace",
+          "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/",
+          "evaluation_tradeoff_not_measured": "Design- and content-led site builder versus commerce-first platform; feature comparisons require plan checks.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "Wix eCommerce",
+          "aliases": [
+            "Wix",
+            "Wix Stores"
+          ],
+          "main_service": "Website and online store builder",
+          "source_verified_capability": "Template/AI website creation, product catalog, checkout and payments",
+          "official_product_source": "https://www.wix.com/ecommerce/online-store",
+          "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/",
+          "evaluation_tradeoff_not_measured": "Site-builder focus alongside commerce; compare large-catalog and customization needs, not unsupported performance claims.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "BigCommerce",
+          "aliases": [
+            "Big Commerce"
+          ],
+          "main_service": "Hosted ecommerce platform",
+          "source_verified_capability": "Storefront, checkout, payments, multistorefront, SEO tools",
+          "official_product_source": "https://www.bigcommerce.com/product/",
+          "comparative_editorial_source": "https://zapier.com/blog/shopify-alternatives/",
+          "evaluation_tradeoff_not_measured": "Additional independently researched alternative not present in the saved Shopify POST; do not retroactively insert it into the historical response.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        }
+      ]
+    },
+    {
+      "key": "hubspot",
+      "brand": "HubSpot",
+      "website": "https://www.hubspot.com/",
+      "sector": "Customer platform / CRM",
+      "saved_real_post": "tests/fixtures/hubspot-v1.2-known-bad.json",
+      "known_observed_names": [
+        "Salesforce",
+        "Salesforce (Competitor 2 placeholder / Freshworks)",
+        "Zendesk"
+      ],
+      "editorial_source": "https://zapier.com/blog/hubspot-alternatives/",
+      "competitors": [
+        {
+          "name": "Salesforce Sales Cloud",
+          "aliases": [
+            "Salesforce",
+            "Salesforce CRM",
+            "Agentforce Sales"
+          ],
+          "main_service": "Sales CRM",
+          "source_verified_capability": "Lead, account, contact and opportunity management",
+          "official_product_source": "https://www.salesforce.com/sales/cloud/",
+          "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/",
+          "evaluation_tradeoff_not_measured": "Enterprise-oriented CRM capabilities versus HubSpot combined marketing/sales/service platform; total cost and complexity require independent plan testing.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "Zoho CRM",
+          "aliases": [
+            "Zoho",
+            "Zoho CRM Plus"
+          ],
+          "main_service": "Sales CRM and automation",
+          "source_verified_capability": "Sales-force automation and sales funnel workflows",
+          "official_product_source": "https://www.zoho.com/crm/features.html",
+          "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/",
+          "evaluation_tradeoff_not_measured": "Sales process and CRM automation emphasis; do not assume feature or price advantage without edition comparison.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        },
+        {
+          "name": "Pipedrive",
+          "aliases": [
+            "Pipedrive CRM"
+          ],
+          "main_service": "Pipeline-oriented sales CRM",
+          "source_verified_capability": "Visual customizable sales pipeline, deal tracking and workflow automation",
+          "official_product_source": "https://www.pipedrive.com/en/features/pipeline-management",
+          "comparative_editorial_source": "https://zapier.com/blog/hubspot-alternatives/",
+          "evaluation_tradeoff_not_measured": "More focused on sales pipelines than the full HubSpot cross-function suite; not proof of superiority/inferiority.",
+          "source_quality": "official_product_page_plus_editorial_context",
+          "feature_accuracy_scope": "Official product description is corroborated; feature availability may depend on plan, region, and date. No ranking or superiority claimed."
+        }
+      ],
+      "observed_post_issue": "The saved HubSpot result contains `Salesforce (Competitor 2 placeholder / Freshworks)` as a broken model name. v1.3 offline guard rejects it; it is not a real product verification.",
+      "other_observed_name_note": "Zendesk is a meaningful customer-service competitor in a narrower segment, but not selected as one of the three closest full customer-platform/CRM comparisons."
+    }
+  ],
+  "cannot_claim": [
+    "No source-backed numeric market shares, prices, accuracy percentages or performance rankings.",
+    "No evidence that the application executes external search automatically for arbitrary submitted sites.",
+    "No freshly observed live v1.3 POST; historical actual POST captures are labelled with their original versions.",
+    "Official vendor material describes advertised capabilities, not independent performance or user satisfaction."
+  ]
+}
