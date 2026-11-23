@@ -21,6 +21,7 @@ class Competitor(BaseModel):
     weaknesses_or_gaps: list[str]
     evidence_status: Literal["mentioned_on_website", "unverified_suggestion"]
     evidence_url: str | None = None
+    evidence_excerpt: str | None = None  # Exact excerpt of a source mention; not proof of competitor features.
 
 
 class CompetitorAnalysis(BaseModel):
@@ -55,6 +56,8 @@ class Service(BaseModel):
     target_customer: str
     main_benefit: str
     evidence_status: Literal["website_content", "inferred_suggestion"]
+    evidence_url: str | None = None
+    evidence_excerpt: str | None = None  # Supports service-name mention, not all benefit claims.
 
 
 class TargetAudience(BaseModel):

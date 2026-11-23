@@ -6,7 +6,7 @@
 
 FastAPI endpoint for real website HTML extraction, safe URL validation and **five-section, LLM-generated business intelligence**. Built against [Dxora Technologies' Link Analysis practical test](https://github.com/chivoxai/practical-test/blob/main/link-analysis.md).
 
-**Status:** functional tested prototype with production-minded restrictions; public URL must be deployed separately. The README does not imply tests against OpenAI/Claude or independently verified competitor research.
+**Status:** v1.1 quality improvements; v1.0 was deployed and verified publicly on Render. v1.1 requires a new local + live validation before claiming deployment. The README does not imply tests against OpenAI/Claude or independently verified competitor research.
 
 ## Capabilities
 
@@ -27,7 +27,7 @@ POST /link-analysis
    |      -> redirect revalidation -> stream limit (5 MB decompressed HTML)
    |      -> BeautifulSoup content cleaning -> 12k-character model context
    +-- Gemini REST generateContent (application/json)
-   |      -> bounded retries for transient 429/5xx
+   |      -> bounded 5xx/timeout retries; 429 quota-aware handling
    +-- Pydantic validates five analysis sections and exactly five queries/services
    +-- typed JSON response with model token counts and response_seconds
 ```
@@ -114,11 +114,12 @@ Abbreviated example (full captured real response in [`evidence/jira-live-respons
 | `413` | More than 5 MB decompressed HTML |
 | `415` | Non-HTML resource |
 | `422` | Pydantic request validation failed |
-| `429` | Per-client limit, daily demo budget or concurrency guard |
-| `502` | Website fetch or Gemini provider failed, or required JSON missing |
-| `503` | Gemini API key is missing |
+| `429` | Per-client/demo rate limit **or Gemini model quota / upstream throttling**; upstream retry hint propagated when provided |
+| `502` | Website fetch error, invalid LLM JSON, or non-transient provider configuration error |
+| `503` | Gemini API key missing, or transient Gemini service/network failure after retries |
+| `504` | Gemini request timed out after bounded retries |
 
-Gemini temporary `429/5xx` errors are retried **at most twice**, with short bounded delays. Unsupported models or invalid credentials do not silently fall back to fabricated data.
+For upstream **429**, the application returns HTTP 429 rather than masking it as 502. It parses Google's structured `QuotaFailure` / `RetryInfo` metadata (never echoes Google's raw error message), avoids retrying a known daily-quota failure, and only retries once when the provider explicitly suggests a delay of **three seconds or less**. The `Retry-After` response header is forwarded when available. Upstream 5xx/timeouts are retried at most twice with a short **1s/2s exponential backoff**. This improves transparency; it **cannot** raise Google free-tier quotas or guarantee successful requests during provider overload. Auto-switching models is intentionally disabled to avoid unexpected API usage and inconsistent results.
 
 ## Tests
 
@@ -151,10 +152,46 @@ See **[MODEL_COMPARISON.md](MODEL_COMPARISON.md)** for the source-based comparis
 - [x] Typed request/response models and offline regression tests
 - [x] Published source-model pricing and justified cost choice
 - [x] Recorded real Jira response (tokens/analysis)
-- [ ] Run optional actual three-model speed/schema benchmark and review factual grounding
+- [x] Run 3-model/3-website live speed/schema benchmark (7/9 passed; factual grounding review remains separate)
 - [ ] Add current screenshots/logs of local and deployed execution
-- [ ] Deploy publicly; confirm `/docs` and `/link-analysis` work from outside localhost
+- [x] Deploy v1.0 publicly; confirm `/docs` and `/link-analysis` work from outside localhost (v1.1 redeploy pending)
 - [ ] Record URLs and final chosen discussion time in the email to `hr@chivoxai.com`
 - [ ] Confirm company LinkedIn/CREST Instagram verification per assignment
 
 No password, API key or personal credential should be committed to this repository.
+
+## Real-company evaluation and v1.1 quality guard
+
+The project was tested against a **real commercial Jira page on Render**: `evidence/jira-render-live-response.json` records a valid five-section response in **4.178 seconds** of Gemini processing (1,725 input / 1,220 output tokens). The snapshot also exposed shortcomings: zero suggested competitors, empty `brand.main_products_services`, and SEO fields copying the existing title and description. The capture is retained transparently instead of pretending those issues never happened.
+
+In v1.1, the prompt explicitly asks for three **plausible real market peers** for identifiable commercial products, but labels them as `unverified_suggestion` where external evidence is absent. It does not require the model to hallucinate competitors for generic sites. Source-labelled services may populate an empty brand product list **only when their names share distinctive terms with the fetched website**; the limitation field explains the derivation. Unchanged SEO titles/descriptions and missing competitors are reported as quality notices, not silently replaced with made-up content. No extra LLM request is made for this quality check.
+
+This is not a competitor-search API. The three researched comparison cases are **offline evaluation references**, never hard-coded API responses: Jira (project management), Shopify (e-commerce), and HubSpot (CRM). Their sources and review guidance are in [`benchmarks/REAL_COMPANY_VALIDATION.md`](benchmarks/REAL_COMPANY_VALIDATION.md). Some sites may block scraping; a 502 for that reason must be reported honestly.
+
+Review a saved live JSON response **without any API key or network call**:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.assess_real_company evidence/jira-render-live-response.json
+```
+
+The original Jira capture is expected to report quality warnings. Re-run it **after** v1.1 deployment and review new responses; 41 offline tests passed in the development environment, but a live v1.1 success must still be independently confirmed.
+
+
+## v1.2 conservative source-evidence gate (offline, no search provider)
+
+The optional `evidence_url` and `evidence_excerpt` fields in service and competitor
+objects are filled **by deterministic code from the already fetched HTML text**
+when the **entire name** appears, not by trusting a model-proposed citation.
+If a service is marked `website_content` without an exact name mention, it is
+downgraded to `inferred_suggestion`. A competitor marked `mentioned_on_website`
+without a name mention is downgraded to `unverified_suggestion` and its evidence
+URL/excerpt is removed. Unverified competitor candidates are still allowed
+under the original assessment specification. `brand.main_products_services`
+is filtered against actual page mentions.
+
+**Scope:** Name-mention evidence does **not** prove service benefits, competitor
+strengths or weaknesses, sales numbers, rankings, legal claims or pricing. This
+release does **not** implement independent external competitor research, Tavily,
+or any paid additional APIs. The resulting JSON accurately distinguishes what
+we can and cannot substantiate from the supplied web page. Do not call this
+full fact-checking. Run `python -m pytest -q` before deploying.

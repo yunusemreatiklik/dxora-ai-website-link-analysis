@@ -44,7 +44,7 @@ Use one API key and the **same** three websites for three Gemini models: 3.5 Fla
 .\.venv\Scripts\python.exe -m scripts.benchmark_gemini --live
 ```
 
-By default, this issues up to **nine live model calls**. It writes `benchmarks/results.csv`, containing each model/site's `http_llm_seconds`, schema success, token usage and price estimate. **Results are not included until run** (the tool must not fabricate benchmark findings). CSV and the detailed generated JSON snapshots in `benchmarks/sample_outputs/` are ignored by Git; use them to manually compare source-grounding, and publish only reviewed non-sensitive summaries.
+By default, this issues up to **nine live model calls**. It writes `benchmarks/results.csv`, containing each model/site's `http_llm_seconds`, schema success, token usage and price estimate. Measured aggregate results from the 20 November run are included in `benchmarks/BENCHMARK_SUMMARY.md` (7/9 successful schema validations; two unexplained `LLMServiceError` outcomes). CSV and the detailed generated JSON snapshots in `benchmarks/sample_outputs/` are ignored by Git; use them to manually compare source-grounding, and publish only reviewed non-sensitive summaries.
 
 For an unbiased human evaluation, review each generated response against the page HTML on these dimensions: correct brand identity, service evidence status, useful/realistic queries, competitor claims marked as unverified, SEO specificity and target-audience specificity. Track scores separately from schema validation. The evaluation needs documented rubrics and human scoring, not an invented 'accuracy %'.
 
@@ -64,3 +64,9 @@ Qualitative accuracy: the Jira sample identifies the correct brand and produces 
 6. Choose **Gemini 3.5 Flash-Lite** as the deployed base because this user has completed a successful real run with a valid API key. **GPT-5 mini** is the alternative pending credentials and a matching benchmark.
 
 Cost is only the model portion; network, hosting, taxes, external data and optional search grounding may add costs. Provider pricing, quota and throughput should be checked when deploying.
+
+## Additional measured 3-model run — 20 November 2026
+
+See [`benchmarks/BENCHMARK_SUMMARY.md`](benchmarks/BENCHMARK_SUMMARY.md). Nine real model/site attempts yielded seven schema-valid outputs. Mean successful LLM times: Gemini 3.5 Flash-Lite **4.059 s** (2/3), Gemini 3.1 Flash-Lite **6.041 s** (2/3), Gemini 3.5 Flash **29.773 s** (3/3). Costs are *paid-tier estimates*, not actual invoices. Accuracy was not scored and the two failures were not diagnosed from the terminal output. The OpenAI and Anthropic entries above remain **documentation-based**, not measured comparisons.
+
+In a separate real **Render** Jira result (`evidence/jira-render-live-response.json`), the deployed Gemini 3.5 Flash-Lite reported **4.178 s** and **1,725 input / 1,220 output** tokens. This is a model-request time, not a full HTTP request stopwatch. The same result showed zero competitors and empty brand products; v1.1 now flags these quality gaps and improves the instructions rather than claiming measured factual correctness.

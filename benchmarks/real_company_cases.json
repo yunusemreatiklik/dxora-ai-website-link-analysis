@@ -1,0 +1,33 @@
+{
+  "purpose": "Human-reviewed reference cases for evaluating real-business website analyses, not hard-coded API answers or automatically verified model claims.",
+  "checked_date": "2026-11-22",
+  "cases": [
+    {
+      "company": "Atlassian Jira",
+      "website": "https://www.atlassian.com/software/jira",
+      "sector": "Project management / SaaS",
+      "expected_brand_keyword": "jira",
+      "reference_competitors": ["Asana", "monday.com", "Azure DevOps"],
+      "research_url": "https://www.atlassian.com/software/jira/comparison",
+      "research_note": "Atlassian explicitly lists these alternatives; vendor-authored comparisons are not neutral factual assessments of strengths or weaknesses."
+    },
+    {
+      "company": "Shopify",
+      "website": "https://www.shopify.com/online",
+      "sector": "E-commerce platform",
+      "expected_brand_keyword": "shopify",
+      "reference_competitors": ["BigCommerce", "WooCommerce", "Wix"],
+      "research_url": "https://www.shopify.com/compare",
+      "research_note": "Shopify identifies these alternative platform groups; the vendor has commercial incentives."
+    },
+    {
+      "company": "HubSpot Smart CRM",
+      "website": "https://www.hubspot.com/products/crm",
+      "sector": "CRM / sales automation",
+      "expected_brand_keyword": "hubspot",
+      "reference_competitors": ["Salesforce", "Zoho CRM", "Pipedrive"],
+      "research_url": "https://zapier.com/blog/hubspot-alternatives/",
+      "research_note": "Zapier's CRM alternatives article provides an independent editorial comparison, but may include affiliate relationships."
+    }
+  ]
+}
