@@ -117,7 +117,7 @@ class SourceSummary(BaseModel):
 
 class LinkAnalysisResponse(BaseModel):
     success: Literal[True]
-    status: Literal["analysis_complete"]
+    status: Literal["analysis_complete", "analysis_limited"]
     website: str
     brand: Brand
     analysis: Analysis

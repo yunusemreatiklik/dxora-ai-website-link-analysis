@@ -198,7 +198,11 @@ async def analyze_with_gemini(
         },
     }
     if client is None:
-        async with httpx.AsyncClient(timeout=httpx.Timeout(60.0, connect=10.0), trust_env=False) as owned:
+        try:
+            timeout_seconds = max(8, min(int(os.getenv("GEMINI_TIMEOUT_SECONDS", "60")), 60))
+        except ValueError:
+            timeout_seconds = 60
+        async with httpx.AsyncClient(timeout=httpx.Timeout(float(timeout_seconds), connect=7.0), trust_env=False) as owned:
             return await _request(owned, url, api_key, payload, model)
     return await _request(client, url, api_key, payload, model)
 
@@ -211,7 +215,11 @@ async def _request(
     # Three attempts max for transient provider/server/network failures.
     # For 429, retry ONLY once when the provider explicitly asks for <=3s.
     # This avoids repeated calls when free daily quota is exhausted.
-    for attempt in range(3):
+    try:
+        max_attempts = max(1, min(3, int(os.getenv("GEMINI_MAX_ATTEMPTS", "3"))))
+    except ValueError:
+        max_attempts = 3
+    for attempt in range(max_attempts):
         try:
             response = await client.post(
                 url,
@@ -225,12 +233,12 @@ async def _request(
             status = exc.response.status_code
             if status == 429:
                 retry_after, daily_quota = _rate_limit_metadata(exc.response)
-                if not daily_quota and attempt == 0 and retry_after is not None and retry_after <= 3:
+                if not daily_quota and attempt == 0 and attempt + 1 < max_attempts and retry_after is not None and retry_after <= 3:
                     await asyncio.sleep(max(1, retry_after))
                     continue
                 raise GeminiRateLimitError(retry_after=retry_after, daily_quota=daily_quota) from exc
             if status in {500, 502, 503, 504}:
-                if attempt < 2:
+                if attempt + 1 < max_attempts:
                     await asyncio.sleep(2 ** attempt)  # bounded exponential backoff: 1s, 2s
                     continue
                 raise GeminiUnavailableError(
@@ -241,12 +249,12 @@ async def _request(
                 raise LLMServiceError("Gemini API returned HTTP 404 (check GEMINI_MODEL)") from exc
             raise LLMServiceError(f"Gemini API returned HTTP {status}") from exc
         except httpx.TimeoutException as exc:
-            if attempt < 2:
+            if attempt + 1 < max_attempts:
                 await asyncio.sleep(2 ** attempt)
                 continue
             raise GeminiTimeoutError("Gemini API request timed out after retries") from exc
         except (httpx.NetworkError, httpx.ProtocolError) as exc:
-            if attempt < 2:
+            if attempt + 1 < max_attempts:
                 await asyncio.sleep(2 ** attempt)
                 continue
             raise GeminiUnavailableError("Gemini network connection failed after retries") from exc

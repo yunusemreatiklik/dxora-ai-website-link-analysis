@@ -22,6 +22,10 @@ class UnsupportedContent(WebsiteFetchError):
     """The remote resource is not an HTML page."""
 
 
+class WebsiteAccessRestricted(WebsiteFetchError):
+    """The page requires access not available to an anonymous HTML fetch."""
+
+
 class ContentTooLarge(WebsiteFetchError):
     """The remote HTML resource exceeds the size budget."""
 
@@ -110,6 +114,10 @@ async def _fetch_with_client(url: str, client: httpx.AsyncClient, pin_dns: bool)
                     current_url = urljoin(current_url, location)
                     continue
 
+                if response.status_code in (401, 403):
+                    raise WebsiteAccessRestricted(
+                        "Source website restricts anonymous automated access; authenticated content cannot be analyzed"
+                    )
                 response.raise_for_status()
                 content_type = response.headers.get("content-type", "").split(";", 1)[0].strip().lower()
                 if content_type not in {"text/html", "application/xhtml+xml"}:

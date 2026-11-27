@@ -161,7 +161,7 @@ def test_http_live_contract_sanitizes_hubspot_fixture(monkeypatch):
     monkeypatch.setattr("app.main.fetch_website", fake_fetch)
     monkeypatch.setattr("app.main.analyze_with_gemini", fake_analyze)
     client = TestClient(app)
-    assert client.get("/health").json()["version"] == "1.3.0"
+    assert client.get("/health").json()["version"] == "1.4.0"
     response = client.post("/link-analysis", json={"url": "https://www.hubspot.com"})
     assert response.status_code == 200
     body = response.json()
