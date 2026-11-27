@@ -129,3 +129,47 @@ def test_empty_pages_do_not_generate_evidence():
     revised, _ = improve_and_audit(page, ai)
     assert revised.brand.main_products_services == []
     assert all(s.evidence_status == "inferred_suggestion" for s in revised.analysis.top_services)
+
+
+def test_unsupported_service_percentage_removed():
+    page, ai = fixture()
+    service = ai.analysis.top_services[0].model_copy(update={
+        "main_benefit": "Guaranteed 100% market visibility",
+        "description": "Supports project management",
+    })
+
+    ai = ai.model_copy(update={
+        "analysis": ai.analysis.model_copy(update={
+            "top_services": [service, *ai.analysis.top_services[1:]]
+        })
+    })
+
+    revised, notes = improve_and_audit(page, ai)
+    got = revised.analysis.top_services[0]
+
+    assert "100%" not in got.main_benefit
+    assert got.description == "Supports project management"
+    assert any("numerical service claims" in n for n in notes)
+
+
+def test_inferred_service_cannot_claim_customer_numbers():
+    page, ai = fixture()
+    service = ai.analysis.top_services[0].model_copy(update={
+        "name": "Unverified Premium Service",
+        "evidence_status": "inferred_suggestion",
+        "description": "Trusted by 50000 customers",
+        "main_benefit": "Supports customer engagement",
+    })
+
+    ai = ai.model_copy(update={
+        "analysis": ai.analysis.model_copy(update={
+            "top_services": [service, *ai.analysis.top_services[1:]]
+        })
+    })
+
+    revised, _ = improve_and_audit(page, ai)
+    got = revised.analysis.top_services[0]
+
+    assert "50000" not in got.description
+    assert got.evidence_status == "inferred_suggestion"
+    assert got.main_benefit == "Supports customer engagement"

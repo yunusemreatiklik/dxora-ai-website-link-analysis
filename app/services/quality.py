@@ -94,6 +94,33 @@ def improve_and_audit(page: ExtractedWebsite, result: AIAnalysis) -> tuple[AIAna
             "downgraded to inferred_suggestion"
         )
 
+
+    service_claims_removed = 0
+
+    for index, service in enumerate(sanitized_services):
+        source = service.evidence_excerpt or ""
+        updates = {}
+
+        for field in ("description", "main_benefit"):
+            value = getattr(service, field)
+
+            if _unsupported_numbers(value, source):
+                updates[field] = (
+                    "Specific claims require independent verification."
+                )
+                service_claims_removed += 1
+
+        if updates:
+            sanitized_services[index] = service.model_copy(
+                update=updates
+            )
+
+    if service_claims_removed:
+        notices.append(
+            f"Removed {service_claims_removed} unsupported "
+            "numerical service claims"
+        )
+
     # Reject fabricated source references. A site mentioning a competitor's name
     # DOES NOT verify the claimed competitor's capabilities or disadvantages.
     competitors = []

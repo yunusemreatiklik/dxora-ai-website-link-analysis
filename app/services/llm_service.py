@@ -149,7 +149,7 @@ def build_prompt(page: ExtractedWebsite) -> str:
         "All fields must have the types shown; lists are JSON arrays. "
         "Fill brand.main_products_services with the named core products or services directly "
         "present in the supplied website text; do not leave it empty if real services are "
-        "clearly available. Never copy inferred service recommendations here. "
+        "clearly available. Never copy inferred service recommendations here. Distinguish the primary brand from third-party businesses. Never attribute advertised businesses' services to the primary brand. Mark uncertain service ownership as inferred_suggestion. Do not invent numerical benefits or guaranteed outcomes. Cover all five supported platforms whenever relevant. "
         "Explicitly include competitor_analysis.competitive_advantages, "
         "target_audience.customer_profiles and target_audience.potential_interests as arrays. "
         "For SEO, inspect the CURRENT title and meta description included in the input. "
