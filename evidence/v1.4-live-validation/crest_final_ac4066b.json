@@ -1,0 +1,276 @@
+{
+  "success": true,
+  "status": "analysis_complete",
+  "website": "https://crest.dxora.com/",
+  "brand": {
+    "name": "CREST",
+    "category": "Brand Awareness & Promotion Platform",
+    "summary": "An AI-powered brand awareness platform that helps businesses increase online visibility, reach potential customers, and claim exclusive #1 industry spots across search networks and AI agents.",
+    "main_products_services": [
+      "AI Brand Agents",
+      "Brand Boost",
+      "Competitor Watch",
+      "Brand Protection",
+      "#1 Momentum"
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "CREST operates in the digital marketing and brand awareness software sector, providing AI-driven promotion and exclusive #1 category ranking placement.",
+      "competitors": [
+        {
+          "name": "Semrush",
+          "main_service": "SEO and competitor analysis platform",
+          "strengths": [
+            "Comprehensive keyword database",
+            "Robust site auditing tools"
+          ],
+          "weaknesses_or_gaps": [
+            "Focuses primarily on search engine optimization rather than AI agent syndication and exclusive industry #1 spot claiming"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        },
+        {
+          "name": "HubSpot Marketing Hub",
+          "main_service": "Inbound marketing and lead generation software",
+          "strengths": [
+            "All-in-one CRM and marketing automation",
+            "Strong content management capabilities"
+          ],
+          "weaknesses_or_gaps": [
+            "Does not offer single-category exclusive leadership claiming or direct AI agent syndication features"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        },
+        {
+          "name": "Brandwatch",
+          "main_service": "Consumer intelligence and social media listening",
+          "strengths": [
+            "Deep social media analytics and sentiment tracking",
+            "Extensive data coverage"
+          ],
+          "weaknesses_or_gaps": [
+            "Lacks automated promotional syndication and direct #1 spot bidding mechanisms for industry dominance"
+          ],
+          "evidence_status": "unverified_suggestion",
+          "evidence_url": null,
+          "evidence_excerpt": null
+        }
+      ],
+      "strengths": [
+        "AI-powered automation with 24 smart AI agents",
+        "Exclusive 100% spotlight share of voice per category",
+        "Multi-platform distribution across search engines, social media, and AI tools like ChatGPT and Gemini"
+      ],
+      "opportunities": [
+        "Expansion into enterprise omnichannel markets",
+        "Integration with more conversational AI platforms",
+        "Enhanced analytics and reporting features for high-tier subscribers"
+      ],
+      "competitive_advantages": [
+        "Exclusive #1 spot per category ensuring zero competitor clutter",
+        "AI-driven 24/7 continuous promotion and brand protection",
+        "Direct social media and search syndication"
+      ]
+    },
+    "target_search_queries": [
+      {
+        "query": "AI powered brand awareness platform for businesses",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Commercial evaluation of AI-driven brand promotion tools",
+        "business_relevance": "Directly matches core software offering",
+        "target_audience": "Business owners and marketing directors"
+      },
+      {
+        "query": "how to claim exclusive #1 industry spot online",
+        "platforms": [
+          "Google",
+          "X"
+        ],
+        "intent": "Informational and transactional search for dominating niche visibility",
+        "business_relevance": "Aligns with CREST's flagship unique selling proposition",
+        "target_audience": "Entrepreneurs and digital agencies"
+      },
+      {
+        "query": "automate brand promotion with AI agents",
+        "platforms": [
+          "Google",
+          "Facebook"
+        ],
+        "intent": "Looking for automated marketing solutions using artificial intelligence",
+        "business_relevance": "Targets users interested in the 24 smart AI agents feature",
+        "target_audience": "SME owners and growth marketers"
+      },
+      {
+        "query": "increase online visibility and lead generation for local business",
+        "platforms": [
+          "Google",
+          "Instagram"
+        ],
+        "intent": "Seeking ways to improve discoverability and inbound leads",
+        "business_relevance": "Addresses the core benefit of the Outreach and Amplify plans",
+        "target_audience": "Local service providers and retail shop ownersinfluencers"
+      },
+      {
+        "query": "competitor tracking and brand protection software",
+        "platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "intent": "Evaluating tools to monitor competitors and secure brand reputation",
+        "business_relevance": "Matches top features offered by the platform",
+        "target_audience": "Brand managers and corporate executives"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "AI brand awareness platform",
+      "secondary_keywords": [
+        "brand promotion software",
+        "increase online visibility",
+        "exclusive industry rank",
+        "AI marketing agents"
+      ],
+      "long_tail_keywords": [
+        "AI-powered brand promotion platform for businesses",
+        "claim #1 industry spot online"
+      ],
+      "recommended_title": "AI Brand Awareness Platform | Claim Your #1 Industry Spot with CREST",
+      "meta_description": "Boost your online visibility with CREST, an AI-powered brand awareness platform. Automate promotion, track competitors, and claim the exclusive #1 spot today.",
+      "supporting_content": [
+        "How It Works guide explaining the #1 industry spot claiming process",
+        "Pricing and Plan comparison page (Spark, Outreach, Amplify, Enterprise)",
+        "Hall of Champions case studies showing real brand success stories"
+      ]
+    },
+    "top_services": [
+      {
+        "name": "AI Brand Agents",
+        "description": "Multiple AI agents working 24x7 to promote your brand and find new growth opportunities.",
+        "target_industry": "Digital Marketing & Technology",
+        "target_customer": "Businesses seeking automated brand growth",
+        "main_benefit": "Continuous round-the-clock promotional execution without manual intervention",
+        "evidence_status": "website_content",
+        "evidence_url": "https://crest.dxora.com/",
+        "evidence_excerpt": "ful AI tools and insights to grow your brand, beat competitors, and own your industry. 01 AI Brand Agents Multiple AI agents work 24x7 to promote your brand and find new opportunities. 02 Brand B"
+      },
+      {
+        "name": "Brand Boost",
+        "description": "Tools and insights to discover new opportunities to increase brand visibility and reach.",
+        "target_industry": "General Business",
+        "target_customer": "SMEs and Service Providers",
+        "main_benefit": "Enhanced discoverability across multiple digital channels",
+        "evidence_status": "website_content",
+        "evidence_url": "https://crest.dxora.com/",
+        "evidence_excerpt": "Agents Multiple AI agents work 24x7 to promote your brand and find new opportunities. 02 Brand Boost Discover new opportunities to increase your brand visibility and reach. 03 Competitor Wat"
+      },
+      {
+        "name": "Competitor Watch",
+        "description": "Track competitors in real-time and get insights to stay ahead of the game.",
+        "target_industry": "Competitive Intelligence",
+        "target_customer": "Marketing Managers & Executives",
+        "main_benefit": "Actionable intelligence to maintain market leadership",
+        "evidence_status": "website_content",
+        "evidence_url": "https://crest.dxora.com/",
+        "evidence_excerpt": "02 Brand Boost Discover new opportunities to increase your brand visibility and reach. 03 Competitor Watch Track competitors in real-time and get insights to stay ahead of the game. 04 Brand Prote"
+      },
+      {
+        "name": "Brand Protection",
+        "description": "Detect risks and issues early that could impact brand trust and reputation.",
+        "target_industry": "Reputation Management",
+        "target_customer": "Established Brands & Enterprises",
+        "main_benefit": "Early warning system against reputational threats",
+        "evidence_status": "website_content",
+        "evidence_url": "https://crest.dxora.com/",
+        "evidence_excerpt": "titor Watch Track competitors in real-time and get insights to stay ahead of the game. 04 Brand Protection Detect risks and issues early that could impact your brand trust and reputation. 05 #1 Mo"
+      },
+      {
+        "name": "#1 Momentum",
+        "description": "Continuous optimization features even after reaching the top to maintain the #1 industry position.",
+        "target_industry": "Market Leadership",
+        "target_customer": "Industry Leaders & Challengers",
+        "main_benefit": "Sustained top-tier ranking and defense against competitors",
+        "evidence_status": "website_content",
+        "evidence_url": "https://crest.dxora.com/",
+        "evidence_excerpt": "tion Detect risks and issues early that could impact your brand trust and reputation. 05 #1 Momentum Keep improving even after you reach the top and stay #1 in your industry. Official CREST"
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Small and Medium Business Owners",
+        "Digital Agencies",
+        "IT Companies & Tech Service Providers",
+        "Local Shops and Showrooms"
+      ],
+      "secondary_audience": [
+        "Marketing Professionals",
+        "Franchise Brands",
+        "Enterprise Marketing Teams"
+      ],
+      "industries": [
+        "Technology & IT",
+        "Financial Services",
+        "Wellness & Health",
+        "Fashion & Clothing",
+        "Digital Marketing"
+      ],
+      "business_types": [
+        "B2B Service Providers",
+        "Retail and Showrooms",
+        "Tech Startups",
+        "Agencies"
+      ],
+      "customer_needs": [
+        "Increased online visibility",
+        "Higher customer trust and conversion rates",
+        "Automated brand promotion via AI",
+        "Exclusive market leadership and competitor defense"
+      ],
+      "geographic_focus": [
+        "Global / Digital-first"
+      ],
+      "recommended_segments": [
+        "Tech Service Providers looking for Amplify #1 spots",
+        "Local Service Businesses needing foundational outreach"
+      ],
+      "customer_profiles": [
+        "Growth-focused entrepreneurs wanting immediate market prominence",
+        "Marketing directors seeking automated multi-platform syndication"
+      ],
+      "potential_interests": [
+        "Artificial Intelligence in marketing",
+        "SEO and brand positioning",
+        "Competitor intelligence tools",
+        "Social media growth"
+      ]
+    }
+  },
+  "model_info": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "token_usage": {
+      "input_tokens": 2899,
+      "output_tokens": 1400,
+      "total_tokens": 4299
+    },
+    "response_seconds": 5.043
+  },
+  "source_summary": {
+    "title": "Brand Awareness Platform for Businesses | CREST",
+    "meta_description": "Build brand awareness and improve online visibility with CREST. Discover AI-powered brand promotion and start growing your brand for free.",
+    "characters_extracted": 8996
+  },
+  "limitations": [
+    "Competitor name mentions do not verify competitors' feature claims; external research is not performed",
+    "Recommended search queries are not measured search volume data",
+    "JavaScript-only content may be missing from the source HTML",
+    "Inferred services are suggestions, not confirmed offerings",
+    "Evidence excerpts verify name mentions only; detailed claims about features, strengths, weaknesses and metrics require independent review"
+  ]
+}

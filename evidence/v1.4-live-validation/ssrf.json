@@ -1,0 +1,7 @@
+{
+  "http_status": 400,
+  "elapsed_seconds": 0.319,
+  "response": {
+    "detail": "Private or non-public IP addresses are not allowed"
+  }
+}
