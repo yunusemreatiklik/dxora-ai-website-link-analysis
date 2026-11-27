@@ -8,7 +8,28 @@ FastAPI endpoint for real website HTML extraction, safe URL validation and **fiv
 
 **Status:** **v1.3.0** (`d9ddb03`) was confirmed **Live** on Render on **23 November 2026**, and its public `/health` endpoint returned `{'status':'ok','version':'1.3.0'}` (see `evidence/screenshots/09-v1.3-render-live-d9ddb03.png` and `evidence/screenshots/10-v1.3-health.png`). **74 local offline tests passed.** The historical Jira/Shopify/HubSpot POST captures are real model API responses from earlier releases, each with `analysis_complete`, five search queries and five services. This documentation upgrade requires no new POST or Gemini usage. As of 23 November 2026, a **separate, manually source-checked competitor research pack** now covers the saved Jira, Shopify and HubSpot examples with official vendor documents and editorial comparisons (`research/audit/COMPETITOR_EVIDENCE_REVIEW.md`). This is **not an automatic external-search engine in the deployed API**; the LLM's historical response values have not been rewritten. No cross-provider live OpenAI/Anthropic benchmark is claimed.
 
-**v1.4.0 validation:** 100 local automated tests passed. A local API request using live Gemini for the Crestspot Instagram profile returned HTTP 200 with analysis_limited because only profile metadata was available. Optional OpenRouter and OpenAI fallback integration passed mocked tests. Live OpenRouter validation remains blocked by upstream free-provider capacity. Paid fallback is disabled by default. Production deployment is pending.
+**Latest validation - 27 November 2026**
+
+- Release: v1.4.0
+- Validated code commit: ac4066b
+- Render deployment: successful
+- Automated tests: 102 passed
+- CREST official website: HTTP 200, analysis_complete
+- Instagram: HTTP 200, analysis_limited
+- LinkedIn restricted access: HTTP 422
+- Private IP protection: HTTP 400
+- Jira and Shopify: HTTP 200 in earlier v1.4 tests
+- Search platform coverage: Google, Facebook, Instagram, LinkedIn and X
+- CREST model response time: 5.043 seconds
+- CREST token usage: 4299
+- Primary provider: Gemini 3.5 Flash-Lite
+- Optional fallback: mock-tested, disabled in production
+- Source mentions are not independent factual verification.
+
+**Live demo:** https://dxora-ai-link-analysis-rni5.onrender.com/docs
+
+**Health:** https://dxora-ai-link-analysis-rni5.onrender.com/health
+
 
 ## Capabilities
 
